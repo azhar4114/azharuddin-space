@@ -10,9 +10,9 @@ export const site = {
   domain: 'azharuddin.space',
   url: 'https://azharuddin.space',
   tagline: 'Turning ideas into useful software.',
-  titleRole: 'Lead Integration Architect | Senior Python & Observability Engineer | Pega CSSA',
+  titleRole: 'Senior Software Engineer | Integration & Observability | Pega CSSA',
   description:
-    'Software engineer and Certified Pega Senior System Architect (CSSA) with enterprise IT experience since December 2012, specializing in observability systems, Python microservices, enterprise workflows, and developer tooling.',
+    'Senior Software Engineer and Certified Pega Senior System Architect (CSSA) with enterprise IT experience since December 2012, specializing in enterprise integration, Splunk observability, Python backend microservices, and workflow automation.',
   location: 'Hyderabad, India',
   email: 'azhar4114@gmail.com',
   linkedin: 'https://www.linkedin.com/in/azhar4114/',

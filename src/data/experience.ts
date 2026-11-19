@@ -1,9 +1,10 @@
 // src/data/experience.ts
-// Career history, certifications, and achievements verified against official LinkedIn profile (Profile.pdf).
-// Formatted to be professional, accurate, and completely safe with respect to enterprise confidentiality.
+// Career history, certifications, and achievements verified against official LinkedIn profile and professional records.
+// Accurately delineates employer, client assignment, and role while protecting confidential internal details.
 
 export interface ExperienceEntry {
   employer: string;
+  client?: string;
   role: string;
   periodLabel: string;
   startDate: string; // ISO YYYY-MM
@@ -39,48 +40,98 @@ export interface AwardEntry {
 export const experience: ExperienceEntry[] = [
   {
     employer: 'Cognizant',
-    role: 'Lead Integration Architect & Pega Senior System Architect',
-    periodLabel: 'March 2022 – Present',
-    startDate: '2022-03',
+    client: 'Cisco Splunk',
+    role: 'Senior Software Engineer — Integration & Observability',
+    periodLabel: 'December 2025 – Present',
+    startDate: '2025-12',
     endDate: null,
     summary:
-      'Directing enterprise integration architecture, observability systems (Splunk), and Pega Platform (8.8.3) workflow engineering across tier-1 enterprise accounts.',
+      'Engineering enterprise observability pipelines, log analytics, and telemetry integrations on Splunk Enterprise across distributed platforms.',
     highlights: [
-      'Architected robust RESTful microservices and Python-based automated data pipelines supporting high-throughput enterprise data onboarding.',
-      'Lead BPM and case-management architecture on Pega Platform 8.8.3, establishing enterprise guardrails and standardizing Dev Studio patterns.',
-      'Optimized observability and log analytics using Splunk (Technology Add-ons, SPL query tuning, indexer/search head monitoring).',
-      'Early adopter of Agentic AI tools (Claude Code, OpenAI Codex) into engineering workflows, accelerating architecture reviews and unit testing.',
-      'Mentored and coached junior and mid-level developers, conducting structured code reviews and driving CI/CD automation best practices.',
-      'Key Measurable Outcomes: Reduced defect resolution turnaround by 15%, improved SLA compliance from 92% to 98%, increased straight-through processing by 22%, and raised team velocity by 18% over two quarters.'
+      'Architecting high-throughput data onboarding pipelines and Splunk Technology Add-ons (TAs) for log ingestion, indexing, and field normalization.',
+      'Designing optimized SPL (Search Processing Language) queries, dashboards, and automated alert rules to maintain platform visibility and operational SLAs.',
+      'Building automated Python scripts to validate forwarder and indexer health, data integrity, and telemetry performance.',
+      'Collaborating with cross-functional platform teams to ensure secure, resilient telemetry pipelines and enterprise compliance.',
     ],
     technologies: [
-      'Pega 8.8.3 / PRPC',
+      'Splunk Enterprise',
+      'SPL',
       'Python',
-      'Splunk (SPL)',
-      'RESTful Microservices',
-      'AWS (EC2, S3, IAM)',
-      'Docker',
-      'Agentic AI Workflows',
-      'CI/CD'
+      'Observability',
+      'Linux',
+      'REST APIs',
+      'Data Pipelines',
+    ],
+    visibility: 'public',
+    verified: true,
+  },
+  {
+    employer: 'Cognizant',
+    client: 'Verizon',
+    role: 'Pega Lead & Senior System Architect',
+    periodLabel: 'June 2024 – November 2025',
+    startDate: '2024-06',
+    endDate: '2025-11',
+    summary:
+      'Led enterprise Pega workflows, case management architectures, and platform guardrails on Pega Platform 8.8.3 for telecom customer onboarding.',
+    highlights: [
+      'Delivered 5G Fixed Wireless Access (FWA) customer onboarding, order fulfillment, and telecom billing integration workflows on Pega Platform 8.8.3.',
+      'Enforced Pega design guardrails and conducted structured code reviews, ensuring compliance and maintainability.',
+      'Streamlined defect triaging and backlog grooming to decrease incident resolution turnaround time by 15% and increased SLA compliance from 92% to 98%.',
+      'Cross-skilled engineering teams on Agile delivery practices and Pega Dev Studio standards.',
+    ],
+    technologies: [
+      'Pega Platform 8.8.3',
+      'Case Management',
+      'Queue Processors',
+      'REST APIs',
+      'BIX',
+      'Agile',
+    ],
+    visibility: 'public',
+    verified: true,
+  },
+  {
+    employer: 'Cognizant',
+    client: 'Google India Account',
+    role: 'Pega Senior System Architect & Tools Engineer',
+    periodLabel: 'March 2022 – June 2024',
+    startDate: '2022-03',
+    endDate: '2024-06',
+    summary:
+      'Delivered critical enterprise workflows on Pega Platform 8.8.3 and secure cloud integrations for internal operations.',
+    highlights: [
+      'Designed and maintained core case management workflows on Pega Platform 8.8.3 for high-volume operational teams.',
+      'Architected secure Google Drive API integration for document attachment storage, reducing transactional database bloat.',
+      'Engineered custom automation scripts and RESTful API microservices, reducing manual operational overhead across teams.',
+      'Managed sprint deployment pipelines to higher environments and coordinated production cutovers.',
+    ],
+    technologies: [
+      'Pega Platform 8.8.3',
+      'Google Drive API',
+      'REST APIs',
+      'Python',
+      'Microservices',
+      'CI/CD',
     ],
     visibility: 'public',
     verified: true,
   },
   {
     employer: 'Astreya',
-    role: 'Software Developer & Tools Engineer (Google Account)',
+    client: 'Google India Account',
+    role: 'Software Developer & Tools Engineer',
     periodLabel: 'November 2015 – March 2022',
     startDate: '2015-11',
     endDate: '2022-03',
     summary:
       'Over six years delivering core enterprise workflows on Pega Platform and engineering a suite of internal browser extensions and web tools for operations teams.',
     highlights: [
-      'Delivered features, complex case lifecycles, and bug fixes on Pega Platform; coordinated multi-environment releases with 99.5% deployment success rate.',
-      'Architected Google Drive integration for secure attachment storage, cutting transactional database bloat and streamlining document lifecycles.',
-      'Designed and deployed an internal productivity tools suite: Automated CSAT application with email response capture, Netco circuit syncing extension, and Advanced Search tool with BigQuery backend.',
-      'Developed an interactive operational chatbot using Google Apps Script and Dialogflow to automate recurring support queries.',
-      'Engineered Python automation scripts and test utilities that eliminated 20+ hours/week of manual processing and shortened average case lifecycle by 2.5 days.',
-      'Authored 15+ reusable engineering components that reduced new-feature development time across teams by ~25%.'
+      'Engineered complex Pega workflows, Data Models, Activities, SLA rules, BIX extracts, and application security roles with 99.5% deployment success rate.',
+      'Built Automated CSAT Application with a custom Chrome extension, email response capture, and BigQuery analytics dashboard.',
+      'Designed Netco circuit integration Chrome extension using AngularJS and GCP Cloud Storage to sync network provisioning workflows.',
+      'Developed operational chatbot automations using Google Apps Script and Dialogflow to streamline recurring operational queries.',
+      'Authored reusable engineering components that reduced new-feature development time across teams by ~25%.',
     ],
     technologies: [
       'Pega PRPC',
@@ -91,14 +142,14 @@ export const experience: ExperienceEntry[] = [
       'GCP',
       'Python',
       'AngularJS',
-      'SQL'
+      'SQL',
     ],
     visibility: 'public',
     verified: true,
   },
   {
     employer: 'Wipro Technologies',
-    role: 'Software Developer & Engineer',
+    role: 'Software Engineer',
     periodLabel: 'December 2012 – October 2015',
     startDate: '2012-12',
     endDate: '2015-10',
@@ -108,31 +159,42 @@ export const experience: ExperienceEntry[] = [
       'Developed responsive UI for single-page applications using JavaScript, AngularJS, and Bootstrap, and backend tools with Python (Django, MySQL).',
       'Automated Linux system health checks, performance tracking scripts, and database maintenance routines.',
       'Reduced defect leakage by 35% through early testing automation and cut MySQL query response times by 40% via schema and index optimization.',
-      'Secured First Place in training batch among 40+ engineering peers; awarded Certificate of Recognition for rapid technology adoption and POC development.'
+      'Awarded Certificate of Recognition for rapid POC prototyping; secured Rank 1 in technical training batch among 40+ engineers.',
     ],
-    technologies: ['JavaScript', 'HTML5', 'CSS3', 'Python', 'Django', 'MySQL', 'Linux/Shell', 'AngularJS'],
+    technologies: [
+      'JavaScript',
+      'HTML5',
+      'CSS3',
+      'Python',
+      'Django',
+      'MySQL',
+      'Linux/Shell',
+      'AngularJS',
+    ],
     visibility: 'public',
     verified: true,
   },
 ];
 
+export const publicExperience: ExperienceEntry[] = experience.filter((e) => e.visibility === 'public');
+
 export const certifications: Certification[] = [
   {
-    name: 'Certified Senior System Architect (CSSA)',
+    name: 'Certified Senior System Architect (CSSA 23)',
     issuer: 'Pegasystems',
-    date: 'Certified',
+    date: 'April 2024',
     status: 'active',
   },
   {
-    name: 'Certified System Architect (CSA)',
+    name: 'Certified System Architect (CSA 7.2)',
     issuer: 'Pegasystems',
-    date: 'Certified',
+    date: 'February 2018',
     status: 'active',
   },
   {
     name: 'React.js & Modern Web Architecture',
     issuer: 'LinkedIn Learning',
-    date: 'Certified',
+    date: 'March 2024',
     status: 'active',
   },
   {
@@ -165,7 +227,3 @@ export const awards: AwardEntry[] = [
     description: 'Recognized for innovation, rapid learning of emerging technologies, and high-impact POC development.',
   },
 ];
-
-export const publicExperience = experience.filter(
-  (e) => e.visibility === 'public'
-);

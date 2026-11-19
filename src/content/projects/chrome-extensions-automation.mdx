@@ -1,64 +1,148 @@
 ---
 title: "Enterprise Chrome Extensions & Automation Suite"
-description: "A suite of browser extensions, web tools, chatbots, and Android utilities built to streamline workflows, capture CSAT feedback, and automate network operations."
+description: "A suite of custom browser extensions, internal web applications, and automation pipelines built to eliminate operational bottlenecks across enterprise workflows."
 category: "professional-case-study"
 status: "published"
+statusLabel: "Enterprise Automation Suite"
+problem: "Severe operational context-switching and manual copy-paste overhead across disparate enterprise web tools, ticketing queues, and databases."
+role: "Lead Automation Engineer"
 featured: true
 technologies:
   - "JavaScript (ES6+)"
-  - "Chrome Extensions API"
+  - "Chrome Extensions API (v2/v3)"
   - "Google Apps Script"
   - "AngularJS"
-  - "BigQuery"
-  - "Android"
+  - "Google BigQuery"
+  - "Android (Java)"
   - "Dialogflow"
 publishedAt: "2023-10-01"
 ---
 
-> **Sanitised Overview:** An engineering overview of a suite of browser extensions, internal web applications, and automation tools built to solve operational bottlenecks for network operations and field deployment teams at Google India.
-
-## Overview
-
-In enterprise operations, engineers frequently switch between dozens of web tools, ticket queues, and legacy databases. This context switching wastes hours of productive time and introduces manual data entry errors.
-
-Over multiple years, Mohammad Azharuddin designed, built, and maintained an interconnected suite of browser extensions, automated scripts, chatbots, and lightweight mobile tools that eliminated repetitive operational friction.
+> **Sanitised Enterprise Study:** An engineering overview of a suite of browser extensions, internal web applications, and automation tools built to solve operational bottlenecks for network operations and field deployment teams at Astreya (supporting tier-1 enterprise operations on the Google account). All proprietary client configurations and internal identifiers are generalised or omitted.
 
 ---
 
-## Key Solutions in the Suite
+## 1. Overview
 
-### 1. Automated Customer Satisfaction (CSAT) Application
-- **Problem:** Capturing timely post-project feedback from internal stakeholders suffered from low response rates due to clunky survey portals.
-- **Solution:** Developed an automated pipeline that triggered targeted weekly summary emails for all completed projects from the preceding week, allowing stakeholders to submit structured ratings directly from within the email client.
-- **Chrome Extension:** Engineered a companion Chrome extension that injected an interactive feedback overlay into operational portals, dynamically hiding optional questions while retaining expansion controls.
-- **Architecture:** Serverless backend implemented in Google Apps Script, feeding live response metrics into Google BigQuery, rendered on an executive dashboard.
+In large enterprise operations, engineers and provisioning teams frequently switch between multiple disparate web tools, ticketing queues, and legacy databases. This manual context-switching slows operational velocity and introduces data entry errors.
 
-### 2. Netco Data Synchronization Extension
-- **Problem:** Network provisioners had to manually cross-reference circuit IDs, installation dates, and acceptance dates across two separate legacy portals.
-- **Solution:** Built a Page Action Chrome extension with an AngularJS frontend that dynamically parsed the open project page and rendered unified circuit status fields.
-- **Bulk Action Feature:** Implemented multi-circuit bulk editing, allowing provisioners to batch-update installation and acceptance dates across dozens of circuits in a single click.
-- **Cloud Pipeline:** Automated daily delta exports from the grid output table to cloud storage buckets using service accounts.
-
-### 3. Advanced Ticket Search & Escalation Tool
-- **Features:** Unified multi-field search engine supporting concurrent queries across 22 operational ticket fields with 10-minute client-side caching.
-- **Automated Escalations:** Built multi-tier ticket escalation logic that automatically elevated unresolved tickets after 48 hours without progress, dispatching automated notification emails to leads.
-- **Quality Metrics:** Calculated and displayed individual technician quality scores based on response time and resolution accuracy.
-
-### 4. MFS Extension & MFS Lite Android App
-- Built a Chrome extension and companion native Android app for field deployment engineers.
-- Allowed field technicians in metropolitan areas to look up tickets by number or ID, log work duration, and record completion codes or jeopardy reasons directly from mobile devices on site.
-
-### 5. Time Tracking & Milestone Extension
-- Browser-action and page-action extension allowing network provisioners to record exact time spent against project milestones and administrative tasks (meetings, coaching, breaks).
-- Implemented using object-oriented JavaScript with manager visibility dashboards.
-
-### 6. Interactive Hangouts Chatbot
-- Developed an interactive operational chatbot built using Google Apps Script and Dialogflow natural language processing to answer common operational queries and trigger ticket status lookups.
+Over multiple years, Mohammad Azharuddin architected, engineered, and maintained an interconnected productivity suite comprising custom browser extensions, serverless backend pipelines, operational chatbots, and mobile utilities that eliminated repetitive manual overhead.
 
 ---
 
-## Architectural Takeaways
+## 2. Problem or Motivation
 
-- **Meet Users Where They Work:** Browser extensions allow engineers to layer modern automation and bulk workflows on top of legacy enterprise systems without waiting for multi-year backend rewrites.
-- **Client-Side Caching:** Implementing local memory and storage caching (e.g., 10-minute search cache) dramatically reduces API load on core databases while delivering instant UI responses.
-- **Full-Stack Pragmatism:** Combining vanilla JavaScript, Chrome Extension APIs, and Google Apps Script enables solo engineers to deliver reliable, highly visible tools in days rather than months.
+Enterprise operations faced several friction points across daily workflows:
+- **Low Feedback Engagement:** Gathering post-project customer satisfaction (CSAT) ratings via external survey portals suffered from low response rates due to cumbersome multi-click login flows.
+- **Manual Data Cross-Referencing:** Network provisioners had to manually cross-reference circuit IDs, installation dates, and acceptance milestones across separate legacy portals.
+- **Search Latency & Ticket Tracking:** Finding active operational tickets required querying multiple unindexed databases without unified caching.
+- **Field Reporting Delays:** Technicians deploying physical infrastructure on-site had limited access to desktop tools, creating delays in logging work completions.
+
+---
+
+## 3. Project Objectives
+
+- Build non-invasive browser extensions that inject automation directly into operational web portals without requiring backend overhauls.
+- Automate CSAT survey collection by embedding feedback mechanisms directly into weekly email summaries and operational dashboards.
+- Provide unified multi-field search with client-side caching to reduce load on underlying databases.
+- Develop lightweight mobile utilities for field technicians to record milestone completions on-site.
+- Create automated conversational chatbots to handle recurring support inquiries.
+
+---
+
+## 4. My Role and Contribution
+
+As **Lead Tools Engineer**:
+- Designed and authored the entire extension architecture, background service workers, and DOM content script injection mechanisms.
+- Engineered serverless data ingestion pipelines using Google Apps Script and Google BigQuery.
+- Developed the Netco circuit synchronization tool with bulk editing capabilities.
+- Built and deployed companion native Android utilities for on-site field engineers.
+- Maintained extensions through browser lifecycle updates, including Manifest v2 to Manifest v3 migrations.
+
+---
+
+## 5. Architecture
+
+```
+User Viewport (Chrome Browser / Android)
+┌─────────────────────────────────────────────────────────────┐
+│ Custom Browser Extensions (Manifest v2 / v3)                │
+│                                                             │
+│   ┌─────────────────────┐       ┌────────────────────────┐  │
+│   │ Content Scripts     │ <───> │ Background Service     │  │
+│   │ (DOM Injections)    │       │ Worker & State Cache   │  │
+│   └─────────────────────┘       └───────────┬────────────┘  │
+└─────────────────────────────────────────────┼───────────────┘
+                                              │ HTTPS (JSON)
+                                              ▼
+Cloud Services & Pipelines
+┌─────────────────────────────────────────────────────────────┐
+│ Serverless API Layer (Google Apps Script / Cloud Functions) │
+│                                                             │
+│   ┌──────────────────────────┐   ┌────────────────────────┐ │
+│   │ Google BigQuery          │   │ GCP Cloud Storage      │ │
+│   │ (Analytics & Reporting)  │   │ (Bucket Sync & Deltas) │ │
+│   └──────────────────────────┘   └────────────────────────┘ │
+└─────────────────────────────────────────────────────────────┘
+```
+
+The architecture injects automation directly into the user's browser runtime. By using content scripts to interact with existing DOM elements and background workers to communicate with serverless cloud APIs, the solution delivers immediate productivity gains without altering core legacy backends.
+
+---
+
+## 6. Technical Implementation
+
+### A. Automated Customer Satisfaction (CSAT) System
+- Engineered an automated pipeline that sent weekly summary emails for completed milestones, allowing internal stakeholders to submit ratings directly from within their email client.
+- Built a companion Chrome extension that injected interactive rating overlays into operational portals.
+- Streamed responses through Google Apps Script into Google BigQuery for real-time executive dashboard reporting.
+
+### B. Netco Circuit Synchronization Extension
+- Developed a browser extension with an AngularJS interface that dynamically parsed open project pages and unified circuit statuses.
+- Built a bulk-edit interface enabling provisioners to batch-update installation and acceptance dates across multiple circuits in a single action.
+- Configured daily delta synchronization to cloud storage buckets using service account credentials.
+
+### C. Advanced Multi-Field Ticket Search
+- Created a search utility supporting concurrent queries across 22 operational ticket fields with a 10-minute client-side TTL cache.
+- Built automated ticket escalation logic that flagged unresolved tickets after 48 hours and notified leads automatically.
+
+### D. MFS Field Deployment Mobile Tool
+- Built a companion native Android application for field technicians, enabling ticket lookups, work duration logging, and completion code reporting on site.
+
+### E. Operational Support Chatbot
+- Developed an interactive chatbot using Google Apps Script and Dialogflow natural language processing to resolve recurring operational queries automatically.
+
+---
+
+## 7. Key Engineering Decisions
+
+- **Client-Side DOM Injection over Full Rewrites:** Choosing to inject browser extension overlays rather than waiting for multi-quarter backend rebuilds allowed delivering functional automation in days.
+- **Client-Side Caching (TTL):** Implementing local storage caching for frequent lookup queries prevented redundant calls to backend operational ticket databases.
+- **Serverless Cloud Backends:** Leveraging Google Apps Script paired with BigQuery allowed rapid deployment with zero dedicated virtual machine maintenance.
+
+---
+
+## 8. Challenges and Solutions
+
+| Challenge | Engineering Solution |
+|---|---|
+| **Chrome Manifest v3 Service Worker Lifecycles** | Migrated persistent background pages to ephemeral event-driven service workers, storing session state in `chrome.storage.local`. |
+| **Cross-Origin Portal Constraints** | Configured declarative net request rules and authorized host permissions to handle multi-domain API handshakes securely. |
+| **DOM Volatility Across Legacy Portal Updates** | Used resilient CSS selector hierarchies and MutationObservers to ensure extensions attached reliably even during dynamic page updates. |
+
+---
+
+## 9. Results and Current Status
+
+- **Operational Impact:** Eliminated hours of manual cross-referencing per week across provisioning teams.
+- **Adoption:** Extensively utilized across internal engineering and field deployment teams at Astreya for the Google account.
+- **Status:** Established reusable internal tooling patterns that informed subsequent enterprise workflow architectures.
+
+---
+
+## 10. Technology Stack
+
+- **Browser Platform:** Chrome Extensions API (Manifest v2 / v3), JavaScript (ES6+), AngularJS, HTML5, CSS3
+- **Cloud Backend:** Google Apps Script, Google BigQuery, Google Cloud Platform (GCP)
+- **Mobile & AI:** Android (Java), Dialogflow NLP
+- **Storage:** `chrome.storage.local`, BigQuery SQL

@@ -6,25 +6,31 @@ const disciplines = [
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>`,
     title: 'Enterprise Integration & Observability',
     description:
-      'Designing high-throughput data onboarding pipelines, RESTful microservices, and log analytics with Splunk (Technology Add-ons, SPL query tuning, and indexer health).',
+      'Engineering high-throughput data onboarding pipelines, log analytics, and telemetry integrations on Splunk Enterprise (Technology Add-ons, SPL query optimization, and indexer health).',
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>`,
+    title: 'Python Backend & Distributed Systems',
+    description:
+      'Architecting resilient RESTful microservices, asynchronous data processing pipelines, idempotency patterns, and database integrations with FastAPI, Python, and SQL.',
   },
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
-    title: 'Pega Platform Architecture (CSSA)',
+    title: 'Pega Platform Architecture',
     description:
-      'Certified Senior System Architect (CSSA) delivering Pega 8.8.3 solutions — case lifecycles, microjourneys, asynchronous queue processors, BIX data extracts, and PDC health.',
+      'Certified Senior System Architect (CSSA 23) delivering Pega 8.8.3 solutions — case management lifecycles, microjourneys, asynchronous queue processors, BIX data extracts, and guardrail governance.',
   },
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
-    title: 'AI-Assisted Tooling & Automation',
+    title: 'AI-Assisted Engineering & Automation',
     description:
-      'Early adopter of agentic AI coding tools (Claude Code, OpenAI Codex) to accelerate architecture reviews, refactor backends, and build custom Chrome extensions.',
+      'Leveraging modern agentic AI coding workflows (Claude Code, OpenAI Codex) to accelerate system architecture reviews, automate test suites, and build custom productivity browser extensions.',
   },
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`,
-    title: 'Interactive Web & EdTech Exploration',
+    title: 'Independent Product Development',
     description:
-      'Creator of aforapple.fun — an educational web application engineered with HTML5 Canvas, touch tracing, and Smart TV remote accessibility.',
+      'Designing and building standalone web tools and applications end-to-end — from HTML5 Canvas interactive math (aforapple.fun) to clean-architecture prototype backends.',
   },
 ];
 ---
@@ -38,12 +44,14 @@ const disciplines = [
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {disciplines.map((d) => (
-        <div class="p-6 bg-surface border border-border rounded-lg hover:border-border/80 hover:bg-surface-raised transition-all duration-200">
-          <div class="text-accent mb-4" set:html={d.icon} />
-          <h3 class="text-sm font-semibold text-text mb-2">{d.title}</h3>
-          <p class="text-muted text-sm leading-relaxed">{d.description}</p>
+        <div class="p-6 bg-surface border border-border rounded-lg hover:border-border/80 hover:bg-surface-raised transition-all duration-200 flex flex-col justify-between">
+          <div>
+            <div class="text-accent mb-4" set:html={d.icon} />
+            <h3 class="text-sm font-semibold text-text mb-2">{d.title}</h3>
+            <p class="text-muted text-sm leading-relaxed">{d.description}</p>
+          </div>
         </div>
       ))}
     </div>

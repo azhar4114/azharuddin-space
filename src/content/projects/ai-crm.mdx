@@ -1,68 +1,152 @@
 ---
 title: "AI-Powered CRM & Contact Intelligence Platform"
-description: "A full-stack CRM engineered with a FastAPI backend, React + TypeScript frontend, and multi-provider LLM integration for contact enrichment and interaction tracking."
+description: "A full-stack CRM prototype engineered with a FastAPI backend, React + TypeScript frontend, and multi-provider LLM integration for contact enrichment and interaction tracking."
 category: "independent"
 status: "published"
+statusLabel: "Working Prototype"
+problem: "Traditional CRM platforms are heavyweight and fragmented; contact enrichment and contextual interaction logs are often manual and slow."
+role: "Full-Stack Architect & Developer"
 featured: true
 technologies:
   - "Python (FastAPI)"
-  - "React"
+  - "React 18"
   - "TypeScript"
   - "Tailwind CSS"
   - "SQLAlchemy"
   - "SQLite"
   - "OpenAI / Gemini APIs"
   - "OpenRouter"
+  - "openpyxl"
 publishedAt: "2024-09-01"
 ---
 
-## Overview
-
-**AI CRM** is a modern, full-stack customer relationship management and contact intelligence application built from the ground up by Mohammad Azharuddin. Engineered with a clean architecture separation (FastAPI backend + React/TypeScript frontend), the platform automates contact record management, interaction logging, and AI-driven lead intelligence.
-
-The application integrates with leading Large Language Model (LLM) APIs—including Google Gemini, OpenAI, Groq, and OpenRouter—to provide automated contact summarization, relationship insights, and actionable follow-up recommendations.
+> **Independent Engineering Prototype:** This project is a functional, full-stack architectural exploration built by Mohammad Azharuddin to explore decoupled clean architecture and multi-provider LLM integrations. It is maintained as a technical portfolio project rather than a commercial production SaaS.
 
 ---
 
-## Architectural Highlights
+## 1. Overview
 
-### 1. Decoupled Clean Architecture
-The application separates concerns across distinct domain, infrastructure, and use-case layers:
-- **Domain Layer:** Pure data schemas and validation rules defined with Pydantic (`ContactSchema`, `ContactCreate`, `InteractionCreate`).
-- **Infrastructure Layer:** Database session lifecycle and relational persistence via SQLAlchemy and SQLite (`ai_crm.db`), with automated migration/table initialization on startup.
-- **Use Cases Layer:** Isolated business logic and AI integration routines (`ai_service.py`) keeping external model providers decoupled from HTTP controllers.
+**AI CRM** is a modern, full-stack customer relationship management prototype engineered to explore clean architectural patterns, robust API design, and pragmatic AI integration.
 
-### 2. Multi-Provider LLM Intelligence Engine
-The backend implements a flexible model adapter supporting dynamic failover and runtime configuration:
-- Supports **Google Gemini**, **OpenAI**, **Groq**, and **OpenRouter** through unified client abstractions.
-- Generates intelligent interaction summaries and relationship sentiment from communication logs.
-- Suggests automated next-best actions and follow-up schedules.
-
-### 3. Bulk Data Ingestion & Spreadsheet Processing
-- Engineered multipart file upload endpoints supporting bulk contact imports from CSV and modern Excel spreadsheets (`.xlsx`) using `openpyxl`.
-- Implements validation pipelines to sanitize contact telephone numbers, email formats, and custom tags prior to database insertion.
-
-### 4. Modern Vite + React + TypeScript Frontend
-- Built using React 18, Vite, TypeScript, and Tailwind CSS.
-- Fast, accessible data tables with client-side filtering, contact search, and inline modal editing.
-- Unified local developer experience: orchestrated with a single `./start.sh` startup script managing concurrent backend (`uvicorn`) and frontend (`vite`) server lifecycles with graceful signal termination.
+The application pairs a high-performance **Python FastAPI** backend with a responsive **React + TypeScript** frontend, automating contact record ingestion, communication logging, and AI-driven contact summarization using modern Large Language Model (LLM) APIs.
 
 ---
 
-## Technical Stack
+## 2. Problem or Motivation
 
-| Tier | Technologies |
+Traditional CRM systems often suffer from significant operational drawbacks for small teams:
+- **Cumbersome Manual Logging:** Sales and operations professionals spend disproportionate time summarizing meeting notes, email threads, and contact updates.
+- **Provider Lock-In:** Most AI-enabled tools lock users into a single model vendor (e.g., proprietary OpenAI endpoints), creating vulnerabilities to vendor pricing hikes, rate limits, or outages.
+- **Brittle Data Import Pipelines:** Ingesting messy CSV and Excel files frequently crashes application backends due to lack of schema validation.
+
+---
+
+## 3. Project Objectives
+
+- Design a decoupled, maintainable backend architecture adhering to Clean Architecture principles.
+- Implement a vendor-agnostic AI service layer supporting seamless runtime switching between Google Gemini, OpenAI, Groq, and OpenRouter.
+- Build a resilient bulk-import pipeline capable of sanitizing and validating Excel (`.xlsx`) and CSV files before database insertion.
+- Deliver an accessible, fast frontend UI featuring real-time client-side search, filtering, and modal editing.
+
+---
+
+## 4. My Role and Contribution
+
+As **Solo Full-Stack Engineer**:
+- Architected the complete system end-to-end, defining data models, domain schemas, and REST endpoints.
+- Implemented the FastAPI backend, SQLAlchemy ORM persistence, and Pydantic validation schemas.
+- Developed the multi-provider LLM adapter engine with fallback handling.
+- Built the React 18, TypeScript, and Tailwind CSS single-page application.
+- Orchestrated the local developer environment with automated process supervisors.
+
+---
+
+## 5. Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ Frontend UI (React 18 + TypeScript + Tailwind CSS + Vite)    │
+│   ├── Contact Management Table & Live Filtering             │
+│   ├── Interactive Modal Editors & Interaction Timelines      │
+│   └── Bulk Spreadsheet Upload Dialog                        │
+└──────────────────────────────┬──────────────────────────────┘
+                               │ JSON REST / Multipart (HTTP)
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│ FastAPI Backend Service (Python 3)                          │
+│                                                             │
+│   ┌─────────────────────────────────────────────────────┐   │
+│   │ Domain & Validation Schemas (Pydantic)              │   │
+│   └──────────────────────────┬──────────────────────────┘   │
+│                              ▼                              │
+│   ┌─────────────────────────────────────────────────────┐   │
+│   │ Use Case & Service Layer (ai_service.py)            │   │
+│   └─────────────┬─────────────────────────┬─────────────┘   │
+│                 │                         │                 │
+│                 ▼                         ▼                 │
+│   ┌──────────────────────────┐ ┌──────────────────────────┐ │
+│   │ Persistence (SQLAlchemy) │ │ Multi-Provider LLM Engine│ │
+│   │ SQLite Storage Engine    │ │ (Gemini, OpenAI, Groq)   │ │
+│   └──────────────────────────┘ └──────────────────────────┘ │
+└─────────────────────────────────────────────────────────────┘
+```
+
+The system strictly decouples the HTTP transport layer from business logic and database persistence, ensuring that swapping database engines (e.g. SQLite to PostgreSQL) or AI providers does not impact core application rules.
+
+---
+
+## 6. Technical Implementation
+
+### A. Decoupled Clean Architecture Backend
+- **Domain Layer:** Pure data structures and validation schemas defined using Pydantic (`ContactSchema`, `ContactCreate`, `InteractionCreate`).
+- **Infrastructure Layer:** Database session management via SQLAlchemy ORM with automated table initialization on boot.
+- **Use Cases Layer:** Business logic encapsulated in dedicated services, isolating external third-party API clients from HTTP controllers.
+
+### B. Multi-Provider LLM Intelligence Engine
+- Unified client abstraction that standardizes model requests and response formats across **Google Gemini**, **OpenAI**, and **OpenRouter**.
+- Generates concise interaction summaries, extracts key relationship milestones, and suggests automated next-best actions from unstructured text notes.
+
+### C. Bulk Ingestion Pipeline
+- Engineered multipart upload endpoints supporting streaming CSV and native Excel (`.xlsx`) ingestion using `openpyxl`.
+- Implements strict field-level validation (sanitizing telephone numbers, normalizing email addresses, and stripping malicious script injections).
+
+### D. Single-Page Application Frontend
+- Built with React 18, Vite, TypeScript, and Tailwind CSS.
+- Features responsive data tables with zero-latency client-side filtering, debounced search, and inline modal state management.
+
+---
+
+## 7. Key Engineering Decisions
+
+- **FastAPI over Django/Flask:** Selected FastAPI for its native async support, automated OpenAPI (Swagger) documentation, and high-performance serialization via Pydantic.
+- **SQLite for Prototype Persistence:** Utilized SQLite via SQLAlchemy for zero-configuration, lightweight local deployment, designed with repository abstractions to allow seamless drop-in replacement with PostgreSQL.
+- **Unified Local Orchestration:** Created a single `./start.sh` startup script managing concurrent backend (`uvicorn`) and frontend (`vite`) processes with proper Unix signal trap handlers.
+
+---
+
+## 8. Challenges and Solutions
+
+| Challenge | Engineering Solution |
 |---|---|
-| **Backend API** | Python 3, FastAPI, Uvicorn, Pydantic |
-| **Persistence** | SQLite, SQLAlchemy ORM |
-| **AI Integration** | OpenAI SDK, Google Gemini API, Groq, OpenRouter |
-| **Data Processing** | openpyxl, CSV stream parsing |
-| **Frontend UI** | React 18, TypeScript, Tailwind CSS, Vite |
-| **Tooling & Dev** | Bash orchestration (`start.sh`), Pytest, Flake8 |
+| **LLM Provider Rate Limits & Variance** | Implemented a unified provider adapter that normalizes payload structures and allows switching model providers via configuration without modifying business logic. |
+| **Excel Format Inconsistencies** | Implemented openpyxl cell-type inspection to handle mixed numeric/text telephone numbers and date formatting anomalies gracefully. |
+| **Concurrent Process Lifecycle in Dev** | Wrote a robust Bash wrapper script with `trap 'kill 0' SIGINT SIGTERM` to cleanly terminate both Uvicorn and Vite servers on exit. |
 
 ---
 
-## Key Outcomes
+## 9. Results and Current Status
 
-- **Full-Stack Ownership:** Engineered the entire stack end-to-end—from relational schema design and async API routing to AI prompt engineering and responsive React UI.
-- **Pragmatic AI Integration:** Demonstrated how modern LLMs can be integrated into everyday business workflows with minimal latency and high reliability.
+- **Development Status:** Fully functional **Working Engineering Prototype**.
+- **Outcomes:** Successfully validates the decoupled architecture pattern and provides a working reference implementation for multi-provider AI integrations.
+- **Codebase Health:** Clean TypeScript compilation with strict type checking, comprehensive Pydantic data validation, and modular service separation.
+
+---
+
+## 10. Technology Stack
+
+- **Backend:** Python 3, FastAPI, Uvicorn, Pydantic
+- **Persistence:** SQLite, SQLAlchemy ORM
+- **AI Integrations:** Google Gemini API, OpenAI SDK, Groq, OpenRouter
+- **Spreadsheet Processing:** openpyxl, Python CSV engine
+- **Frontend:** React 18, TypeScript, Tailwind CSS, Vite
+- **Developer Tooling:** Bash automation (`start.sh`), Pytest

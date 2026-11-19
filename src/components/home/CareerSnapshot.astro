@@ -4,6 +4,7 @@ import { publicExperience } from '../../data/experience';
 
 const roles = publicExperience.map((role) => ({
   employer: role.employer,
+  client: role.client,
   role: role.role,
   period: role.periodLabel,
   current: role.endDate === null,
@@ -20,8 +21,8 @@ const roles = publicExperience.map((role) => ({
         </h2>
         <p class="text-muted text-base leading-relaxed mb-6">
           Hands-on software engineering and technical architecture experience since December 2012,
-          focused on enterprise workflow automation (Pega Platform 8.8.3, CSSA certified),
-          log analytics & observability (Splunk), Python microservices, and full-stack developer tooling.
+          focused on enterprise observability (Splunk Enterprise), Python backend microservices,
+          workflow architecture (Pega Platform 8.8.3, CSSA certified), and developer automation tools.
         </p>
         <div class="flex flex-col gap-3">
           <a
@@ -70,6 +71,7 @@ const roles = publicExperience.map((role) => ({
               </div>
               <p class="text-sm text-muted">
                 {role.employer}
+                {role.client && <span class="text-subtle font-normal"> · {role.client}</span>}
               </p>
               <p class="text-xs font-mono text-subtle mt-0.5">{role.period}</p>
             </div>

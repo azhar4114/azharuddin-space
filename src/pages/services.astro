@@ -1,99 +1,281 @@
 ---
 // src/pages/services.astro
-// Framed as Technical Capabilities & Engineering Practices to ensure complete compliance
-// and workplace safety for enterprise IT environments.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ButtonLink from '../components/ui/ButtonLink.astro';
 
-const capabilities = [
+interface Capability {
+  id: string;
+  title: string;
+  subtitle: string;
+  problem: string;
+  deliverables: string[];
+  technologies: string[];
+  engagement: string;
+}
+
+const capabilities: Capability[] = [
   {
-    title: 'Enterprise Workflow & BPM Architecture',
-    description:
-      'Designing robust case lifecycles, microjourneys, and asynchronous processing on Pega Platform (8.8.3). Enforcing strict guardrails, BIX data extracts, and high-performance queue processing.',
-    areas: ['Case Lifecycle Design', 'Queue Processors & Job Schedulers', 'SLA Governance', 'Pega Guardrails & PDC Health'],
+    id: 'enterprise-integration',
+    title: 'Enterprise Integration Development',
+    subtitle: 'Resilient system-to-system data interchange & API connectors',
+    problem:
+      'Siloed enterprise systems, brittle point-to-point connections, unhandled upstream rate limits, schema drift, and data synchronization failures across heterogeneous infrastructure.',
+    deliverables: [
+      'Resilient REST and SOAP integration connectors with standardized contracts',
+      'Exponential backoff retry mechanisms with dead-letter queue (DLQ) routing',
+      'Idempotency key enforcement preventing duplicate transactions',
+      'OAuth 2.0 and mutual TLS (mTLS) token management and credential rotation',
+      'Payload schema validation and automated transformation mappings',
+    ],
+    technologies: ['REST APIs', 'SOAP / XML', 'OAuth 2.0 / mTLS', 'Pega Connect-REST', 'Webhooks', 'Message Queues'],
+    engagement:
+      'Connecting enterprise case management platforms with core billing, customer identity, and legacy backend services.',
   },
   {
-    title: 'API & Microservices Integration',
-    description:
-      'Architecting resilient RESTful and SOAP integration frameworks. Implementing clean data transformations, connection pooling, idempotency keys, and error classification.',
-    areas: ['REST / SOAP Services', 'Microservices Architecture', 'OAuth 2.0 & Token Lifecycles', 'Idempotency & Backoff Handling'],
+    id: 'python-backend',
+    title: 'Python Backend & API Engineering',
+    subtitle: 'Decoupled services, data transformation & asynchronous pipelines',
+    problem:
+      'Monolithic dependencies, slow synchronous data processing, unstructured data ingestion, and absence of standardized RESTful contracts.',
+    deliverables: [
+      'High-performance REST API services built with FastAPI or Flask',
+      'Decoupled domain architecture with clean repository patterns and SQLAlchemy ORM',
+      'Asynchronous task workers for long-running batch ingestion and processing',
+      'Automated data transformation pipelines (JSON, CSV, Excel) with strict typing',
+      'Unit and integration test suites with Pytest and Dockerized test fixtures',
+    ],
+    technologies: ['Python 3.10+', 'FastAPI', 'SQLAlchemy', 'PostgreSQL / SQLite', 'Docker', 'Pytest', 'Pydantic'],
+    engagement:
+      'Engineering dedicated backend microservices, data extraction and enrichment layers, or internal automation utilities.',
   },
   {
-    title: 'Observability & Log Analytics (Splunk)',
-    description:
-      'Designing high-throughput data onboarding pipelines, Splunk Technology Add-ons (AWS TA), and SPL query optimization for deep visibility across distributed platforms.',
-    areas: ['SPL Query Tuning', 'Field Extractions & Data Models', 'Indexer & Search Head Health', 'Alerting & SLA Monitoring'],
+    id: 'observability-splunk',
+    title: 'Observability & Log Analytics',
+    subtitle: 'Actionable log aggregation, pipeline tuning & proactive alerting',
+    problem:
+      'Opaque distributed systems, delayed operational incident detection, unoptimized search queries causing indexer strain, and fragmented telemetry.',
+    deliverables: [
+      'High-throughput data onboarding pipelines and Technology Add-on (TA) setups',
+      'Optimized SPL (Search Processing Language) queries tuned for index efficiency',
+      'Role-tailored operational dashboards displaying real-time system health',
+      'Proactive alerting rules mapped to operational SLAs and error thresholds',
+      'Log schema normalization, regex field extractions, and data model acceleration',
+    ],
+    technologies: ['Splunk Enterprise / Cloud', 'SPL', 'Technology Add-ons (TAs)', 'Linux / Bash', 'Regex Extractions', 'Cisco Observability'],
+    engagement:
+      'Implementing comprehensive log ingestion, triage dashboards, and telemetry monitoring for enterprise environments.',
   },
   {
-    title: 'Internal Tooling & Workflow Automation',
-    description:
-      'Eliminating manual operational friction by engineering custom browser extensions (Manifest v3), automated Python data pipelines, and interactive chatbots.',
-    areas: ['Chrome Extension Development', 'Python Automation Scripts', 'Google Apps Script & APIs', 'Client-Side Caching (TTL)'],
+    id: 'workflow-pega',
+    title: 'Workflow Automation & Pega Solutions',
+    subtitle: 'Enterprise case management, queue processors & guardrail excellence',
+    problem:
+      'Complex multi-stage business operations plagued by manual handoffs, unmonitored SLAs, compliance risks, and technical debt in legacy workflow setups.',
+    deliverables: [
+      'End-to-end Case Lifecycle Management (CLM) stage and step architecture',
+      'Asynchronous background processing via dedicated Queue Processors and Job Schedulers',
+      'High-volume Business Information Exchange (BIX) data extraction pipelines',
+      'Performance audit and remediation targeting Pega Diagnostic Center (PDC) alerts',
+      'Strict guardrail governance maintaining compliance scores above 90%',
+    ],
+    technologies: ['Pega Platform 8.x / 8.8.3', 'Queue Processors', 'BIX Extracts', 'Pega PDC', 'Case Designer', 'RBAC Security'],
+    engagement:
+      'Architecting new enterprise workflow applications, modernizing legacy Pega setups, or resolving complex integration and performance bottlenecks.',
   },
   {
-    title: 'Cloud Infrastructure & Data Pipelines',
-    description:
-      'Connecting enterprise platforms with cloud services — Google Drive API attachment offloading, GCP Cloud Storage syncing, and AWS cloud-native configurations.',
-    areas: ['GCP & BigQuery Analytics', 'AWS (EC2, S3, IAM, VPC)', 'Containerization (Docker)', 'CI/CD Pipelines (Jenkins, Git)'],
+    id: 'browser-automation',
+    title: 'Browser Automation & Developer Productivity',
+    subtitle: 'Manifest v3 extensions, workflow scripts & operational tools',
+    problem:
+      'Operational and support engineers losing hundreds of cumulative hours to repetitive copy-paste tasks, manual ticket status sync, and multiple disjoint web interfaces.',
+    deliverables: [
+      'Secure Manifest v3 Chrome extensions with background service workers',
+      'Contextual DOM scrapers and automated form autofill with regex validation',
+      'Client-side caching with TTL to minimize redundant backend API round-trips',
+      'Google Apps Script automation integrating Google Sheets, Gmail, and Drive APIs',
+      'Interactive automation scripts and webhook dispatchers',
+    ],
+    technologies: ['JavaScript (ES6+)', 'Chrome Extensions API (v3)', 'Google Apps Script', 'Storage API', 'DOM Observers'],
+    engagement:
+      'Building custom browser tooling for operations, customer onboarding, or field provisioning teams to eliminate operational friction.',
   },
   {
-    title: 'Engineering Leadership & Mentorship',
-    description:
-      'Fostering technical excellence through structured code reviews, defect triaging, cross-skilling across Agile/Scrum ceremonies, and elevating team velocity.',
-    areas: ['Defect Triaging & Grooming', 'Code Review Best Practices', 'Agile / Scrum Delivery', 'Cross-Skilling & Mentorship'],
+    id: 'architecture-consulting',
+    title: 'Technical Architecture & Consultation',
+    subtitle: 'System interface design, failure mode analysis & code governance',
+    problem:
+      'Architectural ambiguity in enterprise systems, unvetted integration designs, fragile error recovery paths, and lacking technical governance.',
+    deliverables: [
+      'Interface specifications and data contract definitions for cross-system integrations',
+      'Failure mode and resiliency analysis identifying single points of failure',
+      'Code review standards, development guidelines, and guardrail enforcement policies',
+      'Technical roadmap development and architectural trade-off evaluations',
+      'Technical mentorship and structured knowledge transfer workshops',
+    ],
+    technologies: ['Enterprise Integration Patterns', 'Distributed Architecture', 'API Design Standards', 'Resiliency Patterns', 'Pega Architecture'],
+    engagement:
+      'Architecture reviews, integration feasibility assessments, and technical guidance for cross-functional engineering teams.',
   },
 ];
 ---
 
 <BaseLayout
-  title="Capabilities"
-  description="Technical capabilities and engineering practices of Mohammad Azharuddin — Pega architecture, observability, microservices, and automation."
+  title="Services & Capabilities"
+  description="Practical engineering capabilities offered by Mohammad Azharuddin — Enterprise integration, Python backend APIs, Splunk observability, Pega workflow architecture, and developer productivity tools."
 >
   <div class="container-content py-20 sm:py-28">
     <!-- Header -->
-    <div class="max-w-2xl mb-16">
-      <p class="text-eyebrow mb-4">Engineering Disciplines</p>
+    <div class="max-w-3xl mb-16">
+      <p class="text-eyebrow mb-4">Capabilities & Practical Services</p>
       <h1 class="text-3xl sm:text-4xl font-bold text-text tracking-tight mb-4">
-        Technical Capabilities
+        Engineering Capabilities
       </h1>
-      <p class="text-muted leading-relaxed">
-        An overview of my core engineering focus areas across enterprise workflow architecture,
-        observability systems, cloud integrations, and developer productivity tooling.
+      <p class="text-muted text-base leading-relaxed">
+        Practical engineering services grounded in over 12 years of enterprise software development.
+        Each capability addresses concrete operational challenges with clear technical deliverables,
+        resilient architecture, and maintainable implementations.
       </p>
     </div>
 
-    <!-- Capabilities Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
-      {capabilities.map((item) => (
-        <div class="p-6 bg-surface border border-border rounded-lg">
-          <h2 class="text-base font-semibold text-text mb-2.5">{item.title}</h2>
-          <p class="text-muted text-sm leading-relaxed mb-4">{item.description}</p>
-          <div>
-            <p class="text-xs font-mono text-subtle uppercase tracking-widest mb-2">Core Focus</p>
-            <ul class="list-none p-0 m-0 space-y-1">
-              {item.areas.map((area) => (
-                <li class="text-xs text-muted flex items-start gap-2">
-                  <span class="text-accent mt-0.5" aria-hidden="true">—</span>
-                  {area}
-                </li>
-              ))}
-            </ul>
+    <!-- Capabilities Cards -->
+    <div class="space-y-10 mb-20">
+      {capabilities.map((item, index) => (
+        <article
+          id={item.id}
+          class="bg-surface border border-border rounded-xl p-6 sm:p-8 hover:border-border/80 transition-colors duration-200"
+        >
+          <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-6 pb-6 border-b border-border/60">
+            <div>
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-xs font-mono font-semibold text-accent">0{index + 1}</span>
+                <span class="text-xs text-subtle font-mono">/</span>
+                <h2 class="text-xl font-bold text-text tracking-tight">{item.title}</h2>
+              </div>
+              <p class="text-sm text-subtle font-medium">{item.subtitle}</p>
+            </div>
           </div>
-        </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Problem Solved -->
+            <div class="lg:col-span-5 space-y-4">
+              <div>
+                <h3 class="text-xs font-mono font-semibold text-text uppercase tracking-wider mb-2">
+                  The Problem Solved
+                </h3>
+                <p class="text-sm text-muted leading-relaxed">
+                  {item.problem}
+                </p>
+              </div>
+
+              <div>
+                <h3 class="text-xs font-mono font-semibold text-text uppercase tracking-wider mb-2">
+                  Typical Engagement
+                </h3>
+                <p class="text-xs text-muted/90 bg-bg/60 border border-border/80 rounded-md p-3 leading-relaxed">
+                  {item.engagement}
+                </p>
+              </div>
+
+              <div>
+                <h3 class="text-xs font-mono font-semibold text-text uppercase tracking-wider mb-2">
+                  Relevant Technologies
+                </h3>
+                <div class="flex flex-wrap gap-1.5">
+                  {item.technologies.map((tech) => (
+                    <span class="text-[0.7rem] font-mono bg-surface-raised border border-border text-muted px-2 py-0.5 rounded">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <!-- Deliverables -->
+            <div class="lg:col-span-7">
+              <h3 class="text-xs font-mono font-semibold text-text uppercase tracking-wider mb-3">
+                Key Deliverables
+              </h3>
+              <ul class="space-y-2.5 list-none p-0 m-0">
+                {item.deliverables.map((del) => (
+                  <li class="text-xs sm:text-sm text-muted flex items-start gap-2.5 leading-relaxed">
+                    <span class="text-accent mt-0.5 shrink-0" aria-hidden="true">✓</span>
+                    <span>{del}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </article>
       ))}
     </div>
 
-    <!-- Connect Box -->
-    <div class="max-w-xl p-8 bg-surface border border-border rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-      <div>
-        <h2 class="text-lg font-bold text-text mb-1">Want to discuss technical architecture?</h2>
-        <p class="text-muted text-xs leading-relaxed">
-          I'm always glad to connect with fellow engineers and discuss system design, Pega, and observability.
+    <!-- Dual Contact Paths CTA -->
+    <div class="bg-surface border border-border rounded-xl p-8 sm:p-10">
+      <div class="max-w-2xl mb-8">
+        <p class="text-eyebrow mb-2">Let's Connect</p>
+        <h2 class="text-2xl font-bold text-text tracking-tight mb-3">
+          Ready to discuss a project or opportunity?
+        </h2>
+        <p class="text-muted text-sm leading-relaxed">
+          Whether you're looking for an experienced senior engineer to join your organization or need technical consultation on enterprise workflows and integrations, choose the path that fits best.
         </p>
       </div>
-      <ButtonLink href="/contact" variant="primary" size="sm">
-        Connect
-      </ButtonLink>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Path 1: Engineering Opportunity -->
+        <div class="p-6 bg-bg/50 border border-border rounded-lg flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono font-medium text-accent uppercase tracking-wider block mb-2">
+              For Recruiters & Hiring Managers
+            </span>
+            <h3 class="text-base font-semibold text-text mb-2">
+              Engineering Opportunity
+            </h3>
+            <p class="text-xs text-muted leading-relaxed mb-6">
+              Evaluate my background for Senior Software Engineer, Integration Architect, Observability, or Pega CSSA positions.
+            </p>
+          </div>
+          <div class="flex items-center gap-3">
+            <ButtonLink
+              href="mailto:azhar4114@gmail.com?subject=Engineering%20Opportunity%20Inquiry"
+              variant="primary"
+              size="sm"
+            >
+              Email Opportunity
+            </ButtonLink>
+            <ButtonLink href="/resume" variant="ghost" size="sm">
+              Review Resume →
+            </ButtonLink>
+          </div>
+        </div>
+
+        <!-- Path 2: Software Project / Consultation -->
+        <div class="p-6 bg-bg/50 border border-border rounded-lg flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-mono font-medium text-success uppercase tracking-wider block mb-2">
+              For Technical Leaders & Clients
+            </span>
+            <h3 class="text-base font-semibold text-text mb-2">
+              Software Project or Consulting
+            </h3>
+            <p class="text-xs text-muted leading-relaxed mb-6">
+              Discuss enterprise workflow architecture, API integration design, Splunk observability dashboards, or automation tooling.
+            </p>
+          </div>
+          <div class="flex items-center gap-3">
+            <ButtonLink
+              href="mailto:azhar4114@gmail.com?subject=Software%20Project%20or%20Consulting%20Inquiry"
+              variant="secondary"
+              size="sm"
+            >
+              Discuss a Project
+            </ButtonLink>
+            <ButtonLink href="/contact" variant="ghost" size="sm">
+              Contact Page →
+            </ButtonLink>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </BaseLayout>

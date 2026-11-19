@@ -10,7 +10,7 @@ import { site } from '../data/site';
 
 <BaseLayout
   title="Experience"
-  description="Professional career history, certifications, and technical skills of Mohammad Azharuddin — Lead Integration Architect & Pega CSSA."
+  description="Professional career history, certifications, and technical skills of Mohammad Azharuddin — Senior Software Engineer, Integration & Observability Specialist, and Pega CSSA."
 >
   <div class="container-content py-20 sm:py-28">
     <!-- Header -->
@@ -134,10 +134,15 @@ import { site } from '../data/site';
                 )}
               </div>
 
-              <!-- Employer / period -->
-              <p class="text-sm font-medium text-muted mb-0.5">
-                {entry.employer}
-              </p>
+              <!-- Employer & Client Assignment / period -->
+              <div class="flex items-center gap-2 flex-wrap text-sm mb-1">
+                <span class="font-semibold text-text">{entry.employer}</span>
+                {entry.client && (
+                  <span class="text-subtle font-normal">
+                    · Client Assignment: <strong class="text-muted font-medium">{entry.client}</strong>
+                  </span>
+                )}
+              </div>
               <p class="text-xs font-mono text-subtle mb-4">
                 {entry.periodLabel}
               </p>

@@ -9,7 +9,7 @@ import { publicExperience, certifications, education, awards } from '../data/exp
 
 <BaseLayout
   title="Resume"
-  description="Executive technical resume of Mohammad Azharuddin — Lead Integration Architect, Senior Python & Observability Engineer, and Pega CSSA."
+  description="Executive technical resume of Mohammad Azharuddin — Senior Software Engineer, Integration & Observability Specialist, and Pega CSSA."
 >
   <div class="container-content py-20 sm:py-28">
     <div class="max-w-3xl mx-auto">
@@ -42,7 +42,7 @@ import { publicExperience, certifications, education, awards } from '../data/exp
             Mohammad Azharuddin
           </h1>
           <p class="text-accent font-semibold text-base mb-4">
-            Lead Integration Architect &nbsp;|&nbsp; Senior Python & Observability Engineer &nbsp;|&nbsp; Pega CSSA
+            Senior Software Engineer &nbsp;|&nbsp; Integration & Observability &nbsp;|&nbsp; Pega CSSA
           </p>
           <div class="flex flex-wrap items-center justify-center sm:justify-start gap-x-5 gap-y-2 text-xs font-mono text-muted">
             <span class="flex items-center gap-1.5">
@@ -70,12 +70,11 @@ import { publicExperience, certifications, education, awards } from '../data/exp
             Professional Summary
           </h2>
           <p class="text-sm text-text leading-relaxed">
-            Results-driven Integration Architect and Senior Engineer with enterprise IT experience since December 2012
-            spanning Observability Systems (Splunk), Python Backend Engineering, and Pega Architecture (CSSA).
-            Throughout my career across Cognizant, Astreya (Google account), and Wipro Technologies, I have specialized
-            in designing high-throughput data onboarding pipelines, architecting RESTful microservices, and leading cloud
-            integration initiatives. Early and active adopter of Agentic AI workflows (Claude Code, OpenAI Codex) to accelerate
-            architecture reviews, automated testing, and team delivery velocity.
+            Senior Software Engineer and Certified Pega Senior System Architect (CSSA) with enterprise IT experience since December 2012
+            spanning Enterprise Observability (Splunk Enterprise), Python Backend Engineering, Integration Architecture, and Pega Solutions.
+            Throughout my career across Cognizant (assignments with Cisco Splunk and Verizon), Astreya (Google account), and Wipro Technologies,
+            I have specialized in architecting high-throughput data onboarding pipelines, RESTful microservices, and workflow automation.
+            Early adopter of Agentic AI engineering workflows to accelerate architecture reviews, automated testing, and team delivery velocity.
           </p>
         </section>
 
@@ -148,7 +147,7 @@ import { publicExperience, certifications, education, awards } from '../data/exp
               <div>
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
                   <h3 class="text-sm font-bold text-text">
-                    {exp.role} &nbsp;<span class="text-muted font-normal">at {exp.employer}</span>
+                    {exp.role} &nbsp;<span class="text-muted font-normal">at {exp.employer}{exp.client ? ` · Client Assignment: ${exp.client}` : ''}</span>
                   </h3>
                   <span class="text-xs font-mono text-subtle shrink-0">
                     {exp.periodLabel}

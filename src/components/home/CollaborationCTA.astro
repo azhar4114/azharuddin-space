@@ -5,22 +5,69 @@ import ButtonLink from '../ui/ButtonLink.astro';
 
 <section class="py-20 sm:py-24 border-t border-border">
   <div class="container-content">
-    <div class="max-w-2xl">
-      <p class="text-eyebrow mb-4">Connect</p>
+    <div class="max-w-3xl mb-12">
+      <p class="text-eyebrow mb-3">Get in Touch</p>
       <h2 class="text-2xl sm:text-3xl font-bold text-text tracking-tight mb-4 text-balance">
-        Interested in architecture or engineering discussions?
+        Start a conversation
       </h2>
-      <p class="text-muted text-base leading-relaxed mb-8">
-        I'm always keen to exchange ideas with fellow engineers on distributed systems,
-        Pega workflows, observability patterns, agentic AI coding, or educational technology.
+      <p class="text-muted text-base leading-relaxed">
+        Whether you are evaluating my background for senior engineering roles or looking to collaborate on enterprise integrations, workflows, or developer tools, select the path that best fits your needs.
       </p>
-      <div class="flex flex-wrap items-center gap-4">
-        <ButtonLink href="/contact" variant="primary" size="md">
-          Get in touch
-        </ButtonLink>
-        <ButtonLink href="/services" variant="ghost" size="md">
-          Explore capabilities
-        </ButtonLink>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Path 1: Discuss an Engineering Opportunity -->
+      <div class="p-6 sm:p-8 bg-surface border border-border rounded-xl flex flex-col justify-between hover:border-border/80 transition-colors duration-200">
+        <div>
+          <span class="text-xs font-mono font-semibold text-accent uppercase tracking-wider block mb-2">
+            Hiring & Leadership
+          </span>
+          <h3 class="text-lg font-bold text-text mb-2">
+            Discuss an engineering opportunity
+          </h3>
+          <p class="text-xs sm:text-sm text-muted leading-relaxed mb-6">
+            For recruiters and engineering leaders evaluating candidates for Senior Software Engineer, Integration Architect, Observability, or Pega CSSA roles.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+          <ButtonLink
+            href="mailto:azhar4114@gmail.com?subject=Engineering%20Opportunity%20Inquiry"
+            variant="primary"
+            size="sm"
+          >
+            Email Opportunity
+          </ButtonLink>
+          <ButtonLink href="/resume" variant="ghost" size="sm">
+            View Resume →
+          </ButtonLink>
+        </div>
+      </div>
+
+      <!-- Path 2: Discuss a Software Project -->
+      <div class="p-6 sm:p-8 bg-surface border border-border rounded-xl flex flex-col justify-between hover:border-border/80 transition-colors duration-200">
+        <div>
+          <span class="text-xs font-mono font-semibold text-success uppercase tracking-wider block mb-2">
+            Consulting & Collaboration
+          </span>
+          <h3 class="text-lg font-bold text-text mb-2">
+            Discuss a software project
+          </h3>
+          <p class="text-xs sm:text-sm text-muted leading-relaxed mb-6">
+            For technical teams and founders needing expertise in enterprise workflow automation, API integration, Splunk observability dashboards, or browser tooling.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+          <ButtonLink
+            href="mailto:azhar4114@gmail.com?subject=Software%20Project%20or%20Consulting%20Inquiry"
+            variant="secondary"
+            size="sm"
+          >
+            Discuss a Project
+          </ButtonLink>
+          <ButtonLink href="/services" variant="ghost" size="sm">
+            Explore Capabilities →
+          </ButtonLink>
+        </div>
       </div>
     </div>
   </div>

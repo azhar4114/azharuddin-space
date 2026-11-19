@@ -1,45 +1,100 @@
 ---
 // src/pages/contact.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ButtonLink from '../components/ui/ButtonLink.astro';
 import { site } from '../data/site';
 ---
 
 <BaseLayout
   title="Contact"
-  description="Contact Mohammad Azharuddin — Lead Integration Architect, Pega CSSA, and software engineer."
+  description="Contact Mohammad Azharuddin — Senior Software Engineer, Integration & Observability, Pega CSSA."
 >
   <div class="container-content py-20 sm:py-28">
-    <div class="max-w-article">
-      <p class="text-eyebrow mb-4">Connect</p>
-      <h1 class="text-3xl sm:text-4xl font-bold text-text tracking-tight mb-4">
-        Get In Touch
-      </h1>
-      <p class="text-muted leading-relaxed mb-12">
-        I welcome conversations with fellow engineers, architects, and technology enthusiasts
-        regarding enterprise integrations, observability, Pega architecture, or educational technology.
-      </p>
+    <div class="max-w-3xl">
+      <!-- Header -->
+      <div class="mb-12">
+        <p class="text-eyebrow mb-4">Direct Communication</p>
+        <h1 class="text-3xl sm:text-4xl font-bold text-text tracking-tight mb-4">
+          Get In Touch
+        </h1>
+        <p class="text-muted text-base leading-relaxed">
+          I welcome direct communication with recruiters, hiring managers, engineering leaders, and fellow developers.
+          Whether you want to discuss a full-time engineering opportunity or an enterprise integration project, choose your preferred path below.
+        </p>
+      </div>
 
-      <!-- Contact methods -->
-      <div class="flex flex-col gap-5 mb-16">
+      <!-- Two Clear Paths -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-14">
+        <!-- Path 1: Opportunity -->
+        <div class="p-6 bg-surface border border-border rounded-xl flex flex-col justify-between hover:border-accent/40 transition-colors">
+          <div>
+            <span class="text-xs font-mono font-semibold text-accent uppercase tracking-wider block mb-2">
+              For Recruiters & Leaders
+            </span>
+            <h2 class="text-base font-bold text-text mb-2">
+              Engineering Opportunity
+            </h2>
+            <p class="text-xs text-muted leading-relaxed mb-6">
+              Evaluate my background for Senior Software Engineer, Integration Architect, Observability, or Pega CSSA roles.
+            </p>
+          </div>
+          <ButtonLink
+            href="mailto:azhar4114@gmail.com?subject=Engineering%20Opportunity%20Inquiry&body=Hi%20Azhar,%0D%0A%0D%0AI%20am%20reaching%20out%20regarding%20an%20engineering%20opportunity%20at%20%5BCompany%20Name%5D.%0D%0A%0D%0ARole:%20%0D%0ALocation/Remote:%20%0D%0AKey%20Focus:%20%0D%0A%0D%0ABest%20regards,%0D%0A"
+            variant="primary"
+            size="sm"
+          >
+            Email Opportunity →
+          </ButtonLink>
+        </div>
+
+        <!-- Path 2: Project / Consulting -->
+        <div class="p-6 bg-surface border border-border rounded-xl flex flex-col justify-between hover:border-success/40 transition-colors">
+          <div>
+            <span class="text-xs font-mono font-semibold text-success uppercase tracking-wider block mb-2">
+              For Technical Teams & Clients
+            </span>
+            <h2 class="text-base font-bold text-text mb-2">
+              Software Project Inquiry
+            </h2>
+            <p class="text-xs text-muted leading-relaxed mb-6">
+              Discuss enterprise workflow engineering, API integration, Splunk observability pipelines, or developer productivity tools.
+            </p>
+          </div>
+          <ButtonLink
+            href="mailto:azhar4114@gmail.com?subject=Software%20Project%20Inquiry&body=Hi%20Azhar,%0D%0A%0D%0AI%20would%20like%20to%20discuss%20a%20project%20involving:%0D%0A%0D%0AProject%20Overview:%20%0D%0ATechnology%20Stack:%20%0D%0ATimeline:%20%0D%0A%0D%0ABest%20regards,%0D%0A"
+            variant="secondary"
+            size="sm"
+          >
+            Discuss a Project →
+          </ButtonLink>
+        </div>
+      </div>
+
+      <!-- Direct Channels List -->
+      <div class="space-y-4 mb-14">
+        <h2 class="text-sm font-mono uppercase tracking-wider text-subtle mb-4">
+          Direct Channels
+        </h2>
+
         <!-- Email -->
-        <div class="flex items-start gap-5 p-6 bg-surface border border-border rounded-lg">
+        <div class="flex items-start gap-4 p-5 bg-surface border border-border rounded-lg">
           <div class="shrink-0 mt-0.5 text-accent">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="2" y="4" width="20" height="16" rx="2"/>
               <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
             </svg>
           </div>
-          <div class="flex-1">
+          <div class="flex-1 min-w-0">
             <div class="flex items-center justify-between gap-3 mb-1">
-              <h2 class="text-sm font-semibold text-text">Direct Email</h2>
+              <h3 class="text-sm font-semibold text-text">Direct Email</h3>
               <span class="text-[0.65rem] font-mono text-accent bg-accent/10 border border-accent/30 px-2 py-0.5 rounded">
-                Preferred
+                Fastest Response
               </span>
             </div>
-            <p class="text-muted text-xs mb-2">Direct channel for technical discussions and correspondence.</p>
+            <p class="text-muted text-xs mb-2">Direct personal inbox; monitored daily.</p>
             <a
               href={`mailto:${site.email}`}
-              class="font-mono text-sm text-accent hover:text-accent-hover transition-colors no-underline font-medium"
+              class="font-mono text-sm text-accent hover:text-accent-hover transition-colors no-underline font-medium break-all"
             >
               {site.email}
             </a>
@@ -47,22 +102,22 @@ import { site } from '../data/site';
         </div>
 
         <!-- LinkedIn -->
-        <div class="flex items-start gap-5 p-6 bg-surface border border-border rounded-lg">
+        <div class="flex items-start gap-4 p-5 bg-surface border border-border rounded-lg">
           <div class="shrink-0 mt-0.5 text-accent">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
               <rect x="2" y="9" width="4" height="12"/>
               <circle cx="4" cy="4" r="2"/>
             </svg>
           </div>
-          <div class="flex-1">
-            <h2 class="text-sm font-semibold text-text mb-1">LinkedIn</h2>
-            <p class="text-muted text-xs mb-2">Professional network and engineering articles.</p>
+          <div class="flex-1 min-w-0">
+            <h3 class="text-sm font-semibold text-text mb-1">LinkedIn</h3>
+            <p class="text-muted text-xs mb-2">Professional network, recommendations, and updates.</p>
             <a
               href={site.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              class="font-mono text-sm text-accent hover:text-accent-hover transition-colors no-underline font-medium"
+              class="font-mono text-sm text-accent hover:text-accent-hover transition-colors no-underline font-medium break-all"
             >
               linkedin.com/in/azhar4114 ↗
             </a>
@@ -70,20 +125,20 @@ import { site } from '../data/site';
         </div>
 
         <!-- GitHub -->
-        <div class="flex items-start gap-5 p-6 bg-surface border border-border rounded-lg">
+        <div class="flex items-start gap-4 p-5 bg-surface border border-border rounded-lg">
           <div class="shrink-0 mt-0.5 text-accent">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
             </svg>
           </div>
-          <div class="flex-1">
-            <h2 class="text-sm font-semibold text-text mb-1">GitHub</h2>
-            <p class="text-muted text-xs mb-2">Code repositories, tools, and personal experiments.</p>
+          <div class="flex-1 min-w-0">
+            <h3 class="text-sm font-semibold text-text mb-1">GitHub</h3>
+            <p class="text-muted text-xs mb-2">Code repositories, architecture experiments, and developer utilities.</p>
             <a
               href={site.github}
               target="_blank"
               rel="noopener noreferrer"
-              class="font-mono text-sm text-accent hover:text-accent-hover transition-colors no-underline font-medium"
+              class="font-mono text-sm text-accent hover:text-accent-hover transition-colors no-underline font-medium break-all"
             >
               github.com/azhar4114 ↗
             </a>
@@ -91,27 +146,16 @@ import { site } from '../data/site';
         </div>
       </div>
 
-      <!-- Scope Guide -->
-      <div class="p-6 bg-surface border border-border rounded-lg">
-        <h3 class="text-sm font-semibold text-text mb-2">Topics I welcome discussing</h3>
-        <ul class="text-xs text-muted space-y-2 list-none p-0 m-0">
-          <li class="flex items-start gap-2">
-            <span class="text-accent" aria-hidden="true">→</span>
-            <span><strong>Integration & Microservices Architecture:</strong> High-throughput RESTful patterns, data onboarding pipelines, and system refactoring.</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-accent" aria-hidden="true">→</span>
-            <span><strong>Observability & Splunk Telemetry:</strong> SPL query tuning, Technology Add-ons, log normalization, and monitoring health.</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-accent" aria-hidden="true">→</span>
-            <span><strong>Pega Platform Architecture:</strong> Case lifecycle design, queue processors, guardrail governance, and upgradeability.</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-accent" aria-hidden="true">→</span>
-            <span><strong>Educational Web Tech:</strong> Interactive HTML5 Canvas interfaces, Smart TV browser optimizations, and lightweight web apps.</span>
-          </li>
-        </ul>
+      <!-- Scope & Expectation Note -->
+      <div class="p-6 bg-surface border border-border rounded-xl">
+        <h3 class="text-sm font-semibold text-text mb-3">Response Expectation & Notes</h3>
+        <p class="text-xs text-muted leading-relaxed mb-4">
+          I typically respond to authentic inquiries within 24–48 business hours. Direct email is utilized instead of a generic form to ensure uninterrupted message delivery directly into my primary inbox without third-party form aggregator failures or spam filtering dropouts.
+        </p>
+        <div class="text-xs text-subtle font-mono flex items-center gap-2">
+          <span class="inline-block w-2 h-2 rounded-full bg-success"></span>
+          <span>Open to senior engineering roles, architectural discussions, and technical collaboration.</span>
+        </div>
       </div>
     </div>
   </div>
