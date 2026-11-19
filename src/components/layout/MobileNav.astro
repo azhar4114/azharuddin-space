@@ -1,0 +1,118 @@
+---
+// src/components/layout/MobileNav.astro
+import { navLinks } from '../../data/navigation';
+import { site } from '../../data/site';
+---
+
+<!-- Mobile nav trigger button (md:hidden) -->
+<div class="md:hidden">
+  <button
+    id="mobile-menu-btn"
+    type="button"
+    aria-controls="mobile-menu"
+    aria-expanded="false"
+    aria-label="Open navigation menu"
+    class="inline-flex items-center justify-center w-10 h-10 rounded text-muted hover:text-text hover:bg-surface-raised transition-colors duration-150"
+  >
+    <!-- Hamburger icon -->
+    <svg id="icon-menu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+    <!-- Close icon -->
+    <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="hidden">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+</div>
+
+<!-- Mobile menu overlay -->
+<div
+  id="mobile-menu"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Navigation menu"
+  class="hidden fixed inset-0 z-40 md:hidden"
+>
+  <!-- Backdrop -->
+  <div id="mobile-backdrop" class="absolute inset-0 bg-bg/80 backdrop-blur-sm"></div>
+
+  <!-- Panel -->
+  <nav
+    class="absolute top-16 right-0 w-64 bg-surface border-l border-b border-border rounded-bl-lg shadow-xl p-6 flex flex-col gap-1"
+    aria-label="Mobile navigation"
+  >
+    {navLinks.map((link) => (
+      <a
+        href={link.href}
+        class="mobile-nav-link px-3 py-2.5 text-sm text-muted hover:text-text hover:bg-surface-raised rounded transition-colors duration-150 no-underline"
+      >
+        {link.label}
+      </a>
+    ))}
+
+    <div class="mt-4 pt-4 border-t border-border">
+      <a
+        href={site.resumePath}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mobile-nav-link flex items-center justify-center w-full px-4 py-2.5 text-sm font-medium text-bg bg-accent hover:bg-accent-hover rounded transition-colors duration-150 no-underline"
+      >
+        View Resume
+      </a>
+    </div>
+  </nav>
+</div>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn') as HTMLButtonElement;
+  const menu = document.getElementById('mobile-menu') as HTMLElement;
+  const backdrop = document.getElementById('mobile-backdrop') as HTMLElement;
+  const iconMenu = document.getElementById('icon-menu') as unknown as SVGElement;
+  const iconClose = document.getElementById('icon-close') as unknown as SVGElement;
+  const links = document.querySelectorAll<HTMLAnchorElement>('.mobile-nav-link');
+
+  let isOpen = false;
+  let previouslyFocused: HTMLElement | null = null;
+
+  function openMenu() {
+    isOpen = true;
+    menu.classList.remove('hidden');
+    btn.setAttribute('aria-expanded', 'true');
+    btn.setAttribute('aria-label', 'Close navigation menu');
+    iconMenu.classList.add('hidden');
+    iconClose.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    previouslyFocused = document.activeElement as HTMLElement;
+    // Focus first link
+    const firstLink = menu.querySelector<HTMLElement>('a');
+    firstLink?.focus();
+  }
+
+  function closeMenu() {
+    isOpen = false;
+    menu.classList.add('hidden');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', 'Open navigation menu');
+    iconMenu.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+    document.body.style.overflow = '';
+    previouslyFocused?.focus();
+  }
+
+  btn.addEventListener('click', () => {
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  backdrop.addEventListener('click', closeMenu);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen) closeMenu();
+  });
+
+  links.forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>

@@ -1,0 +1,55 @@
+---
+title: "aforapple.fun — Interactive Educational Web Application"
+description: "An interactive web application and companion Android tool designed for early childhood learning, featuring canvas letter tracing, phonics, and Smart TV remote navigation."
+category: "independent"
+status: "published"
+featured: true
+technologies:
+  - "JavaScript (ES6+)"
+  - "HTML5 Canvas"
+  - "CSS3"
+  - "Google Apps Script"
+  - "Google Sheets"
+  - "Android (Java)"
+  - "Smart TV UI"
+demoUrl: "https://aforapple.fun"
+publishedAt: "2024-01-01"
+---
+
+## Overview
+
+**aforapple.fun** is a personal educational web application engineered by Mohammad Azharuddin to explore accessible, low-latency learning interfaces for early childhood learners and classroom environments. The platform provides interactive visual and audio activities including letter tracing, alphabet recognition, phonics, and formative quizzes.
+
+The core engineering objective was delivering a responsive, touch-friendly experience across diverse hardware constraints — from entry-level touch tablets and desktop browsers to classroom Smart TVs navigated via handheld remote controls.
+
+## Technical Motivations & Challenges
+
+Early childhood learning interfaces have unique technical and UX requirements:
+- **Hardware Diversity:** Many classroom displays and budget tablets have limited processing resources; heavy client frameworks can introduce latency that disrupts the learning experience.
+- **Input Modalities:** Young learners use touchscreens, mice, or Smart TV D-pad remote controls, requiring unified event handling across different input vectors.
+- **Zero Distractions:** Ad-free, clean interfaces with high visual contrast and immediate feedback loops are essential for sustained engagement.
+
+## Architecture & Implementation
+
+### 1. Responsive & Smart TV-Optimized Frontend
+The user interface is built using lightweight, vanilla JavaScript (ES6+), semantic HTML5, and CSS3. Avoiding heavy client-side frameworks ensured sub-second load times and 60fps animations even on low-powered Android TVs and budget classroom hardware.
+- High-contrast visual elements and large touch-friendly target areas designed specifically for developing motor skills.
+- Custom HTML5 Canvas tracing engine providing instant visual and audio feedback as children practice writing letters and numbers.
+- Remote-control key navigation mapping for standard Smart TV remotes (D-pad directional control).
+
+### 2. Lightweight Serverless Content Layer
+- **Content Delivery:** Implemented with Google Apps Script serving as a serverless API layer paired with Google Sheets for structured educational content, vocabulary lists, and quiz banks.
+- **RESTful Endpoints:** Endpoints deliver content payloads and quiz questions securely over HTTPS.
+- **Operational Efficiency:** Operates with near-zero ongoing server maintenance overhead, demonstrating how practical engineering patterns can deliver stable web tools sustainably.
+
+### 3. Companion Android Application
+Developed a lightweight companion Android application delivering an offline-tolerant native wrapper for tablets and interactive school displays.
+
+### 4. Modular Curriculum Navigation
+Engineered structured learning pathways allowing parents and teachers to guide children through sequential educational stages with progress saved locally.
+
+## Key Outcomes
+
+- **Cross-Device Accessibility:** Successfully deployed and accessible via [aforapple.fun](https://aforapple.fun) and on Android devices.
+- **Performance:** Instant page transitions with zero bundle bloat, maintaining smooth interactive rendering on large smart TV displays.
+- **Full-Stack Engineering:** Designed and built end-to-end — UI/UX interaction design, Canvas tracing math, serverless content APIs, and Android packaging.

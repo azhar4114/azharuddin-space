@@ -1,0 +1,49 @@
+---
+// src/pages/writing/index.astro
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/writing/ArticleCard.astro';
+
+const allArticles = await getCollection('writing');
+// Sort by publication date descending
+const articles = allArticles.sort((a, b) => {
+  const dateA = new Date(a.data.pubDate).getTime();
+  const dateB = new Date(b.data.pubDate).getTime();
+  return dateB - dateA;
+});
+---
+
+<BaseLayout
+  title="Writing"
+  description="Technical articles and engineering notes by Mohammad Azharuddin on Pega architecture, browser extensions, APIs, and cloud workflows."
+>
+  <div class="container-content py-20 sm:py-28">
+    <div class="max-w-2xl mb-14">
+      <p class="text-eyebrow mb-4">Engineering Notes</p>
+      <h1 class="text-3xl sm:text-4xl font-bold text-text tracking-tight mb-4">
+        Technical Writing
+      </h1>
+      <p class="text-muted leading-relaxed">
+        In-depth notes on enterprise workflows, browser extensions, cloud integrations,
+        and software engineering patterns. Practical observations, code snippets, and real architectural trade-offs.
+      </p>
+    </div>
+
+    <div class="max-w-article">
+      <div class="flex flex-col divide-y divide-border">
+        {articles.map((article) => (
+          <div class="py-8 first:pt-0">
+            <ArticleCard
+              title={article.data.title}
+              description={article.data.description}
+              slug={article.slug}
+              pubDate={new Date(article.data.pubDate)}
+              tags={article.data.tags}
+              category={article.data.category}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

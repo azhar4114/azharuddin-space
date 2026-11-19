@@ -1,0 +1,64 @@
+---
+// src/components/writing/ArticleCard.astro
+import TagList from '../ui/TagList.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  pubDate: Date;
+  tags: string[];
+  category?: string;
+  readingTime?: string;
+}
+
+const { title, description, slug, pubDate, tags, category, readingTime } = Astro.props;
+
+const formattedDate = pubDate.toLocaleDateString('en-GB', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+---
+
+<article class="group border-b border-border pb-8 last:border-0">
+  <!-- Meta row -->
+  <div class="flex items-center gap-3 mb-2">
+    <time
+      datetime={pubDate.toISOString()}
+      class="text-xs font-mono text-subtle"
+    >
+      {formattedDate}
+    </time>
+    {readingTime && (
+      <>
+        <span class="text-border" aria-hidden="true">·</span>
+        <span class="text-xs font-mono text-subtle">{readingTime}</span>
+      </>
+    )}
+    {category && (
+      <>
+        <span class="text-border" aria-hidden="true">·</span>
+        <span class="text-xs font-mono text-subtle">{category}</span>
+      </>
+    )}
+  </div>
+
+  <!-- Title -->
+  <h3 class="text-base font-semibold text-text mb-2 leading-snug">
+    <a
+      href={`/writing/${slug}`}
+      class="no-underline hover:text-accent transition-colors duration-150"
+    >
+      {title}
+    </a>
+  </h3>
+
+  <!-- Description -->
+  <p class="text-muted text-sm leading-relaxed mb-3">
+    {description}
+  </p>
+
+  <!-- Tags -->
+  <TagList tags={tags} />
+</article>

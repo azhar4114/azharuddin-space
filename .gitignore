@@ -1,0 +1,23 @@
+# Build outputs and dependencies
+node_modules/
+dist/
+.astro/
+
+# Environment and logs
+.env
+.env.*
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Private source documents (keep confidential raw resumes off git)
+resumes/
+
+# Local review artifacts
+screenshots/
+
+# System and IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

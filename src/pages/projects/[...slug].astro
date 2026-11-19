@@ -1,0 +1,104 @@
+---
+// src/pages/projects/[...slug].astro
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TagList from '../../components/ui/TagList.astro';
+import ButtonLink from '../../components/ui/ButtonLink.astro';
+
+export async function getStaticPaths() {
+  const projectEntries = await getCollection('projects');
+  return projectEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+const categoryLabel: Record<string, string> = {
+  independent: 'Independent Project',
+  'professional-case-study': 'Enterprise Case Study',
+  experiment: 'Technical Experiment',
+};
+---
+
+<BaseLayout
+  title={entry.data.title}
+  description={entry.data.description}
+>
+  <div class="container-content py-16 sm:py-24">
+    <div class="max-w-article mx-auto">
+      <!-- Back Link -->
+      <div class="mb-8">
+        <a
+          href="/projects"
+          class="text-xs font-mono text-subtle hover:text-accent no-underline transition-colors inline-flex items-center gap-1.5"
+        >
+          ← Back to all projects
+        </a>
+      </div>
+
+      <!-- Header -->
+      <header class="mb-12 pb-8 border-b border-border">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-xs font-mono font-medium px-2.5 py-0.5 rounded border border-accent/30 bg-accent/10 text-accent">
+            {categoryLabel[entry.data.category] ?? entry.data.category}
+          </span>
+          {entry.data.publishedAt && (
+            <span class="text-xs font-mono text-subtle">
+              {new Date(entry.data.publishedAt).getFullYear()}
+            </span>
+          )}
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl font-bold text-text tracking-tight mb-4 text-balance">
+          {entry.data.title}
+        </h1>
+
+        <p class="text-muted text-base leading-relaxed mb-6">
+          {entry.data.description}
+        </p>
+
+        <!-- Tech tags -->
+        <div class="mb-6">
+          <TagList tags={entry.data.technologies} size="sm" />
+        </div>
+
+        <!-- External links -->
+        {(entry.data.demoUrl || entry.data.repositoryUrl) && (
+          <div class="flex flex-wrap items-center gap-3 pt-4">
+            {entry.data.demoUrl && (
+              <ButtonLink href={entry.data.demoUrl} variant="primary" size="sm" external>
+                Visit Live Site ↗
+              </ButtonLink>
+            )}
+            {entry.data.repositoryUrl && (
+              <ButtonLink href={entry.data.repositoryUrl} variant="ghost" size="sm" external>
+                Source Repository ↗
+              </ButtonLink>
+            )}
+          </div>
+        )}
+      </header>
+
+      <!-- MDX Content -->
+      <div class="prose prose-invert max-w-none text-muted leading-relaxed space-y-6">
+        <Content />
+      </div>
+
+      <!-- Footer CTA -->
+      <div class="mt-16 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+        <a
+          href="/projects"
+          class="text-sm text-accent hover:text-accent-hover no-underline font-medium transition-colors"
+        >
+          ← Explore more projects
+        </a>
+        <ButtonLink href="/contact" variant="ghost" size="sm">
+          Discuss this project
+        </ButtonLink>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,107 @@
+---
+// src/pages/writing/[...slug].astro
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TagList from '../../components/ui/TagList.astro';
+import ButtonLink from '../../components/ui/ButtonLink.astro';
+import { site } from '../../data/site';
+
+export async function getStaticPaths() {
+  const articleEntries = await getCollection('writing');
+  return articleEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+const formattedDate = new Date(entry.data.pubDate).toLocaleDateString('en-GB', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout
+  title={entry.data.title}
+  description={entry.data.description}
+>
+  <div class="container-content py-16 sm:py-24">
+    <div class="max-w-article mx-auto">
+      <!-- Back Link -->
+      <div class="mb-8">
+        <a
+          href="/writing"
+          class="text-xs font-mono text-subtle hover:text-accent no-underline transition-colors inline-flex items-center gap-1.5"
+        >
+          ← Back to all articles
+        </a>
+      </div>
+
+      <!-- Header -->
+      <header class="mb-12 pb-8 border-b border-border">
+        <div class="flex items-center gap-3 mb-4">
+          {entry.data.category && (
+            <span class="text-xs font-mono font-medium px-2.5 py-0.5 rounded border border-accent/30 bg-accent/10 text-accent">
+              {entry.data.category}
+            </span>
+          )}
+          <time datetime={new Date(entry.data.pubDate).toISOString()} class="text-xs font-mono text-subtle">
+            {formattedDate}
+          </time>
+          {entry.data.draft && (
+            <span class="text-xs font-mono px-2 py-0.5 rounded bg-warning/10 text-warning border border-warning/30">
+              Draft
+            </span>
+          )}
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl font-bold text-text tracking-tight mb-4 text-balance">
+          {entry.data.title}
+        </h1>
+
+        <p class="text-muted text-base leading-relaxed mb-6">
+          {entry.data.description}
+        </p>
+
+        <TagList tags={entry.data.tags} size="sm" />
+      </header>
+
+      <!-- Article Body -->
+      <article class="prose prose-invert max-w-none text-muted leading-relaxed space-y-6">
+        <Content />
+      </article>
+
+      <!-- Author Box & Navigation -->
+      <footer class="mt-16 pt-8 border-t border-border">
+        <div class="p-6 bg-surface border border-border rounded-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 mb-8">
+          <div>
+            <h2 class="text-sm font-semibold text-text mb-1">Written by {site.name}</h2>
+            <p class="text-xs text-muted">
+              Lead Integration Architect &amp; Pega CSSA | Observability &amp; Python Engineer based in Hyderabad, India.
+            </p>
+          </div>
+          <div class="flex items-center gap-3">
+            <ButtonLink href="/contact" variant="ghost" size="sm">
+              Get in touch
+            </ButtonLink>
+            <ButtonLink href={site.linkedin} variant="secondary" size="sm" external>
+              LinkedIn ↗
+            </ButtonLink>
+          </div>
+        </div>
+
+        <div>
+          <a
+            href="/writing"
+            class="text-xs font-mono text-accent hover:text-accent-hover no-underline transition-colors inline-flex items-center gap-1.5"
+          >
+            ← Back to technical writing
+          </a>
+        </div>
+      </footer>
+    </div>
+  </div>
+</BaseLayout>

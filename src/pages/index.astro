@@ -1,0 +1,26 @@
+---
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import ExpertiseGrid from '../components/home/ExpertiseGrid.astro';
+import FeaturedProjects from '../components/home/FeaturedProjects.astro';
+import CareerSnapshot from '../components/home/CareerSnapshot.astro';
+import LatestWriting from '../components/home/LatestWriting.astro';
+import LabPreview from '../components/home/LabPreview.astro';
+import CollaborationCTA from '../components/home/CollaborationCTA.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  title="Home"
+  description={site.description}
+  isHome={true}
+>
+  <Hero />
+  <ExpertiseGrid />
+  <FeaturedProjects />
+  <CareerSnapshot />
+  <LatestWriting />
+  <LabPreview />
+  <CollaborationCTA />
+</BaseLayout>

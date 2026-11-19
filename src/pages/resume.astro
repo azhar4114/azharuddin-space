@@ -1,0 +1,219 @@
+---
+// src/pages/resume.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ButtonLink from '../components/ui/ButtonLink.astro';
+import TagList from '../components/ui/TagList.astro';
+import { site } from '../data/site';
+import { publicExperience, certifications, education, awards } from '../data/experience';
+---
+
+<BaseLayout
+  title="Resume"
+  description="Executive technical resume of Mohammad Azharuddin — Lead Integration Architect, Senior Python & Observability Engineer, and Pega CSSA."
+>
+  <div class="container-content py-20 sm:py-28">
+    <div class="max-w-3xl mx-auto">
+      <!-- Top Actions Bar -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 mb-10 bg-surface border border-border rounded-lg">
+        <div>
+          <span class="text-xs font-mono text-success flex items-center gap-1.5 mb-1">
+            <span class="w-2 h-2 rounded-full bg-success"></span>
+            Executive Technical Resume
+          </span>
+          <p class="text-xs text-muted">
+            Continuous enterprise software engineering experience since December 2012.
+          </p>
+        </div>
+        <div class="flex items-center gap-3">
+          <ButtonLink href={site.resumePath} variant="primary" size="sm" external>
+            Download PDF
+          </ButtonLink>
+          <ButtonLink href={site.linkedin} variant="secondary" size="sm" external>
+            LinkedIn ↗
+          </ButtonLink>
+        </div>
+      </div>
+
+      <!-- Resume Paper Container -->
+      <article class="p-8 sm:p-12 bg-surface/80 border border-border rounded-xl shadow-2xl">
+        <!-- Resume Header -->
+        <header class="border-b border-border pb-8 mb-8 text-center sm:text-left">
+          <h1 class="text-3xl sm:text-4xl font-bold text-text tracking-tight mb-2">
+            Mohammad Azharuddin
+          </h1>
+          <p class="text-accent font-semibold text-base mb-4">
+            Lead Integration Architect &nbsp;|&nbsp; Senior Python & Observability Engineer &nbsp;|&nbsp; Pega CSSA
+          </p>
+          <div class="flex flex-wrap items-center justify-center sm:justify-start gap-x-5 gap-y-2 text-xs font-mono text-muted">
+            <span class="flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-subtle"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              {site.location}
+            </span>
+            <span class="flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-subtle"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <a href={`mailto:${site.email}`} class="text-muted hover:text-accent no-underline">{site.email}</a>
+            </span>
+            <span class="flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-subtle"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              <a href={site.linkedin} target="_blank" rel="noopener noreferrer" class="text-muted hover:text-accent no-underline">linkedin.com/in/azhar4114</a>
+            </span>
+            <span class="flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-subtle"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <a href="https://azharuddin.space" class="text-muted hover:text-accent no-underline">azharuddin.space</a>
+            </span>
+          </div>
+        </header>
+
+        <!-- Executive Summary -->
+        <section class="mb-8">
+          <h2 class="text-xs font-mono font-bold text-accent uppercase tracking-widest mb-3">
+            Professional Summary
+          </h2>
+          <p class="text-sm text-text leading-relaxed">
+            Results-driven Integration Architect and Senior Engineer with enterprise IT experience since December 2012
+            spanning Observability Systems (Splunk), Python Backend Engineering, and Pega Architecture (CSSA).
+            Throughout my career across Cognizant, Astreya (Google account), and Wipro Technologies, I have specialized
+            in designing high-throughput data onboarding pipelines, architecting RESTful microservices, and leading cloud
+            integration initiatives. Early and active adopter of Agentic AI workflows (Claude Code, OpenAI Codex) to accelerate
+            architecture reviews, automated testing, and team delivery velocity.
+          </p>
+        </section>
+
+        <!-- Certifications & Education Grid -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 pt-6 border-t border-border">
+          <div>
+            <h2 class="text-xs font-mono font-bold text-accent uppercase tracking-widest mb-3">
+              Certifications
+            </h2>
+            <ul class="space-y-2 text-xs list-none p-0 m-0">
+              {certifications.map((c) => (
+                <li class="flex items-baseline justify-between gap-2">
+                  <span class="text-text font-medium">{c.name}</span>
+                  <span class="font-mono text-subtle shrink-0">{c.date}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h2 class="text-xs font-mono font-bold text-accent uppercase tracking-widest mb-3">
+              Education & Honors
+            </h2>
+            {education.map((edu) => (
+              <div class="text-xs mb-2">
+                <span class="text-text font-medium block">{edu.degree}</span>
+                <span class="text-subtle">{edu.institution} · {edu.year}</span>
+                <span class="text-accent block font-mono">{edu.score}</span>
+              </div>
+            ))}
+            {awards.map((a) => (
+              <p class="text-[0.7rem] text-subtle mt-1.5">
+                ★ <strong>{a.title}</strong> ({a.organization}): {a.description}
+              </p>
+            ))}
+          </div>
+        </section>
+
+        <!-- Technical Skills -->
+        <section class="mb-8 pt-6 border-t border-border">
+          <h2 class="text-xs font-mono font-bold text-accent uppercase tracking-widest mb-3">
+            Core Competencies
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div>
+              <span class="text-subtle font-mono block mb-1">Integration & Observability:</span>
+              <p class="text-text">Splunk (AWS TA, SPL query tuning, ITSI), REST/SOAP Microservices, Data Pipelines, System Refactoring</p>
+            </div>
+            <div>
+              <span class="text-subtle font-mono block mb-1">Pega Platform (CSSA):</span>
+              <p class="text-text">Pega 8.8.3 / PRPC, Case Management, Queue Processors, Data Pages, BIX Extracts, Enterprise Guardrails</p>
+            </div>
+            <div>
+              <span class="text-subtle font-mono block mb-1">Backend & Cloud:</span>
+              <p class="text-text">Python (Django, FastAPI), AWS (EC2, S3, IAM, VPC), Docker, Jenkins CI/CD, SQL (PostgreSQL, MySQL, BigQuery)</p>
+            </div>
+            <div>
+              <span class="text-subtle font-mono block mb-1">Frontend & AI Tooling:</span>
+              <p class="text-text">JavaScript (ES6+, DOM, OOP), Chrome Extensions (v2/v3), React + TypeScript, Agentic AI Workflows (Claude Code, Codex)</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Professional Experience -->
+        <section class="mb-8 pt-6 border-t border-border">
+          <h2 class="text-xs font-mono font-bold text-accent uppercase tracking-widest mb-5">
+            Work Experience
+          </h2>
+          <div class="space-y-7">
+            {publicExperience.map((exp) => (
+              <div>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
+                  <h3 class="text-sm font-bold text-text">
+                    {exp.role} &nbsp;<span class="text-muted font-normal">at {exp.employer}</span>
+                  </h3>
+                  <span class="text-xs font-mono text-subtle shrink-0">
+                    {exp.periodLabel}
+                  </span>
+                </div>
+                <p class="text-xs text-muted mb-2">{exp.summary}</p>
+                <ul class="list-disc list-inside space-y-1 text-xs text-text mb-3 pl-1">
+                  {exp.highlights.map((h) => (
+                    <li>{h}</li>
+                  ))}
+                </ul>
+                <TagList tags={exp.technologies} size="xs" />
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Selected Projects -->
+        <section class="pt-6 border-t border-border">
+          <h2 class="text-xs font-mono font-bold text-accent uppercase tracking-widest mb-3">
+            Selected Independent & Tooling Projects
+          </h2>
+          <div class="space-y-4 text-xs">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-bold text-text">aforapple.fun — Educational Web Application & Companion Android App</span>
+                <a href="https://aforapple.fun" target="_blank" rel="noopener noreferrer" class="font-mono text-accent no-underline">aforapple.fun ↗</a>
+              </div>
+              <p class="text-muted">
+                Interactive educational web application and companion Android tool designed for early childhood learning.
+                Features alphabet tracing, phonics, and quizzes optimized for Smart TVs, web browsers, and Android tablets.
+                Engineered with vanilla JavaScript, HTML5 Canvas, Google Apps Script serverless backend, and Google Sheets.
+              </p>
+            </div>
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-bold text-text">AI-Powered CRM & Contact Intelligence Platform</span>
+                <span class="font-mono text-subtle">FastAPI · React · TypeScript · LLMs</span>
+              </div>
+              <p class="text-muted">
+                Full-stack CRM platform with decoupled clean architecture (FastAPI backend + Vite/React/TypeScript frontend).
+                Integrates multi-provider LLM models (Gemini, OpenAI, OpenRouter) for automated contact interaction summarization,
+                lead intelligence, and spreadsheet bulk ingestion (CSV/Excel via openpyxl).
+              </p>
+            </div>
+            <div>
+              <span class="font-bold text-text block mb-1">Enterprise Productivity & Browser Extension Suite</span>
+              <p class="text-muted">
+                Engineered internal tools including an automated CSAT application with email-triggered response capture and BigQuery analytics;
+                Netco data synchronization extension; Advanced Ticket Search with 22-field indexing; and MFS Lite mobile tools.
+              </p>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Bottom Actions -->
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <a href={site.resumeLatestPath} target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-subtle hover:text-muted no-underline">
+          View full multi-page archive PDF (Resume_latest.pdf) →
+        </a>
+        <ButtonLink href="/contact" variant="primary" size="md">
+          Get In Touch
+        </ButtonLink>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

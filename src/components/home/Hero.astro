@@ -1,0 +1,95 @@
+---
+// src/components/home/Hero.astro
+import ButtonLink from '../ui/ButtonLink.astro';
+import { site } from '../../data/site';
+---
+
+<section class="relative pt-20 pb-24 sm:pt-28 sm:pb-32">
+  <div class="container-content">
+    <div class="max-w-3xl">
+      <!-- Eyebrow -->
+      <p class="text-eyebrow mb-6 tracking-widest" aria-hidden="false">
+        Lead Integration Architect &nbsp;·&nbsp; Senior Software Engineer &nbsp;·&nbsp; Pega CSSA
+      </p>
+
+      <!-- H1 -->
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-text tracking-tight text-balance leading-[1.1] mb-8">
+        Turning ideas into<br class="hidden sm:block" />
+        <span class="text-accent">useful software.</span>
+      </h1>
+
+      <!-- Body copy -->
+      <p class="text-muted text-lg leading-relaxed max-w-2xl mb-10">
+        I'm a software engineer and Certified Pega Senior System Architect (CSSA) with enterprise
+        IT experience since December 2012. My work centers on observability systems (Splunk),
+        Python backend microservices, enterprise workflow architectures, and cloud integrations.
+        Beyond enterprise platforms, I engineer developer automation tools, build interactive web
+        applications like <a href="https://aforapple.fun" target="_blank" rel="noopener noreferrer" class="text-accent underline hover:text-accent-hover">aforapple.fun</a>,
+        and explore agentic AI coding workflows.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-wrap items-center gap-4">
+        <ButtonLink href="/projects" variant="primary" size="lg">
+          Explore my work
+        </ButtonLink>
+        <ButtonLink href={site.resumePath} variant="secondary" size="lg" external>
+          View resume (PDF)
+        </ButtonLink>
+      </div>
+
+      <!-- Social links -->
+      <div class="flex items-center gap-5 mt-10">
+        <a
+          href={site.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn Profile"
+          class="text-subtle hover:text-accent transition-colors duration-150 no-underline"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
+        <a
+          href={site.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub Profile"
+          class="text-subtle hover:text-accent transition-colors duration-150 no-underline"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+        </a>
+        <a
+          href={`mailto:${site.email}`}
+          aria-label="Send Email"
+          class="text-subtle hover:text-accent transition-colors duration-150 no-underline"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subtle background grid decoration -->
+  <div
+    class="pointer-events-none absolute inset-0 overflow-hidden opacity-[0.03]"
+    aria-hidden="true"
+  >
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)" />
+    </svg>
+  </div>
+</section>

@@ -1,0 +1,63 @@
+---
+title: "Designing Reliable API Retry Mechanisms: Idempotency, Backoff and Observability"
+description: "A practical guide to building retry logic that is safe, observable and doesn't make failure modes worse."
+pubDate: "2025-11-01"
+tags: ["APIs", "Reliability", "Observability"]
+category: "Engineering"
+draft: true
+---
+
+> **Draft** — This article is a draft placeholder. The owner should write or review this content before publishing. The title and topic are from the content brief; the body below is an outline only.
+
+## Introduction
+
+Retry logic is one of those things that seems simple at first — just try again if it fails — but gets complicated quickly when you think about what can go wrong. Done poorly, retries amplify failures rather than recover from them.
+
+This article covers the key ideas behind building retry mechanisms that are genuinely reliable: idempotency, exponential backoff with jitter, and the observability you need to know whether your retry strategy is working.
+
+## Why retries fail
+
+{/* TODO:WRITE — describe common failure modes: thundering herd, non-idempotent operations, missing visibility */}
+
+## Idempotency
+
+A retry is only safe if the operation being retried is idempotent — meaning repeating it produces the same result as running it once. Getting this wrong means retries can cause duplicate data, duplicate charges or repeated side effects.
+
+{/* TODO:WRITE — explain idempotency keys, database-level vs application-level idempotency, the read-modify-write problem */}
+
+## Exponential backoff with jitter
+
+{/* TODO:WRITE — explain naive retry problems, exponential backoff, why jitter matters, practical implementation */}
+
+```python
+import random
+import time
+
+def retry_with_backoff(fn, max_attempts=5, base_delay=1.0, max_delay=60.0):
+    """
+    Retry fn with exponential backoff and full jitter.
+    """
+    for attempt in range(max_attempts):
+        try:
+            return fn()
+        except Exception as e:
+            if attempt == max_attempts - 1:
+                raise
+            delay = min(max_delay, base_delay * (2 ** attempt))
+            jittered = random.uniform(0, delay)
+            time.sleep(jittered)
+```
+
+## Classifying errors
+
+Not all errors should be retried. Retrying a 400 Bad Request response is pointless — the request itself is wrong. Retrying a 503 Service Unavailable may be appropriate.
+
+{/* TODO:WRITE — retryable vs non-retryable errors, how to classify, circuit breaker pattern */}
+
+## Observability
+
+{/* TODO:WRITE — what to log and trace, retry metrics, alerting on retry exhaustion vs success rates */}
+
+## Summary
+
+{/* TODO:WRITE — practical checklist for retry implementation */}

@@ -1,0 +1,413 @@
+---
+// src/pages/lab/index.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Lab & Tools"
+  description="Browser-based developer utilities by Mohammad Azharuddin — JSON formatter, Base64 encoder/decoder, cron expression helper and more."
+>
+  <div class="container-content py-20 sm:py-28">
+    <div class="max-w-2xl mb-14">
+      <p class="text-eyebrow mb-4">Developer Lab</p>
+      <h1 class="text-3xl sm:text-4xl font-bold text-text tracking-tight mb-4">
+        Browser tools
+      </h1>
+      <p class="text-muted leading-relaxed">
+        Small utilities that run entirely in your browser. No data is transmitted
+        to any server. Use them freely.
+      </p>
+    </div>
+
+    <!-- Privacy note -->
+    <div class="max-w-article mb-12 p-4 bg-surface border border-border rounded-lg flex gap-3">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-success shrink-0 mt-0.5" aria-hidden="true">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+      <p class="text-muted text-sm leading-relaxed">
+        <strong class="text-text font-medium">Privacy:</strong> All tools below process
+        your input locally using browser APIs. No text, tokens or data you enter is sent
+        to any external service or server.
+      </p>
+    </div>
+
+    <!-- JSON Formatter -->
+    <section id="json-formatter" class="mb-16 scroll-mt-20" aria-labelledby="json-heading">
+      <div class="mb-6">
+        <h2 id="json-heading" class="text-xl font-bold text-text mb-1">JSON Formatter & Validator</h2>
+        <p class="text-muted text-sm">Paste JSON to format and validate it. Errors are shown with the offending location where possible.</p>
+      </div>
+
+      <div class="bg-surface border border-border rounded-lg p-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
+          <!-- Input -->
+          <div>
+            <label for="json-input" class="block text-xs font-mono text-subtle uppercase tracking-widest mb-2">Input JSON</label>
+            <textarea
+              id="json-input"
+              rows="12"
+              spellcheck="false"
+              autocomplete="off"
+              placeholder={'{\n  "example": "paste JSON here"\n}'}
+              class="w-full bg-bg border border-border rounded font-mono text-xs text-text p-3 resize-y focus:outline-none focus:border-accent/60 transition-colors"
+              aria-describedby="json-error"
+            ></textarea>
+          </div>
+          <!-- Output -->
+          <div>
+            <label for="json-output" class="block text-xs font-mono text-subtle uppercase tracking-widest mb-2">Formatted output</label>
+            <textarea
+              id="json-output"
+              rows="12"
+              spellcheck="false"
+              readonly
+              placeholder="Formatted JSON will appear here…"
+              class="w-full bg-bg border border-border rounded font-mono text-xs text-muted p-3 resize-y focus:outline-none cursor-default"
+              aria-live="polite"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Error -->
+        <p id="json-error" role="alert" class="text-xs text-warning mb-4 min-h-[1.25rem] font-mono"></p>
+
+        <!-- Controls -->
+        <div class="flex flex-wrap items-center gap-3">
+          <button id="json-format-btn" type="button" class="px-4 py-2 text-xs font-medium bg-accent text-bg rounded hover:bg-accent-hover transition-colors">
+            Format
+          </button>
+          <button id="json-validate-btn" type="button" class="px-4 py-2 text-xs font-medium bg-surface-raised border border-border text-muted rounded hover:text-text transition-colors">
+            Validate
+          </button>
+          <button id="json-copy-btn" type="button" class="px-4 py-2 text-xs font-medium bg-surface-raised border border-border text-muted rounded hover:text-text transition-colors">
+            Copy
+          </button>
+          <button id="json-clear-btn" type="button" class="px-4 py-2 text-xs font-medium bg-surface-raised border border-border text-muted rounded hover:text-text transition-colors ml-auto">
+            Clear
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Base64 -->
+    <section id="base64" class="mb-16 scroll-mt-20" aria-labelledby="b64-heading">
+      <div class="mb-6">
+        <h2 id="b64-heading" class="text-xl font-bold text-text mb-1">Base64 Encoder / Decoder</h2>
+        <p class="text-muted text-sm">Encode plain text to Base64 or decode Base64 back to text. Handles Unicode (UTF-8) correctly.</p>
+      </div>
+
+      <div class="bg-surface border border-border rounded-lg p-6">
+        <!-- Mode toggle -->
+        <div role="group" aria-label="Mode" class="flex gap-2 mb-5">
+          <button id="b64-encode-btn" type="button" data-mode="encode" class="b64-mode-btn px-4 py-1.5 text-xs font-medium rounded border transition-colors bg-accent text-bg border-accent">
+            Encode
+          </button>
+          <button id="b64-decode-btn" type="button" data-mode="decode" class="b64-mode-btn px-4 py-1.5 text-xs font-medium rounded border transition-colors text-muted border-border hover:text-text hover:border-border/80">
+            Decode
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
+          <div>
+            <label for="b64-input" id="b64-input-label" class="block text-xs font-mono text-subtle uppercase tracking-widest mb-2">Plain text</label>
+            <textarea id="b64-input" rows="8" spellcheck="false" placeholder="Text to encode…" class="w-full bg-bg border border-border rounded font-mono text-xs text-text p-3 resize-y focus:outline-none focus:border-accent/60 transition-colors" aria-describedby="b64-error"></textarea>
+          </div>
+          <div>
+            <label for="b64-output" id="b64-output-label" class="block text-xs font-mono text-subtle uppercase tracking-widest mb-2">Base64</label>
+            <textarea id="b64-output" rows="8" spellcheck="false" readonly placeholder="Result will appear here…" class="w-full bg-bg border border-border rounded font-mono text-xs text-muted p-3 resize-y focus:outline-none cursor-default" aria-live="polite"></textarea>
+          </div>
+        </div>
+
+        <p id="b64-error" role="alert" class="text-xs text-warning mb-4 min-h-[1.25rem] font-mono"></p>
+
+        <div class="flex flex-wrap gap-3">
+          <button id="b64-run-btn" type="button" class="px-4 py-2 text-xs font-medium bg-accent text-bg rounded hover:bg-accent-hover transition-colors">
+            Encode
+          </button>
+          <button id="b64-copy-btn" type="button" class="px-4 py-2 text-xs font-medium bg-surface-raised border border-border text-muted rounded hover:text-text transition-colors">
+            Copy result
+          </button>
+          <button id="b64-clear-btn" type="button" class="px-4 py-2 text-xs font-medium bg-surface-raised border border-border text-muted rounded hover:text-text transition-colors ml-auto">
+            Clear
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cron Helper -->
+    <section id="cron-helper" class="mb-8 scroll-mt-20" aria-labelledby="cron-heading">
+      <div class="mb-6">
+        <h2 id="cron-heading" class="text-xl font-bold text-text mb-1">Cron Expression Helper</h2>
+        <p class="text-muted text-sm">Enter a cron expression to understand each field. Common examples are provided below.</p>
+      </div>
+
+      <div class="bg-surface border border-border rounded-lg p-6">
+        <!-- Input -->
+        <div class="mb-5">
+          <label for="cron-input" class="block text-xs font-mono text-subtle uppercase tracking-widest mb-2">Cron expression</label>
+          <input
+            id="cron-input"
+            type="text"
+            placeholder="e.g. 0 9 * * 1-5"
+            class="w-full bg-bg border border-border rounded font-mono text-sm text-text px-3 py-2.5 focus:outline-none focus:border-accent/60 transition-colors max-w-sm"
+            aria-describedby="cron-error cron-explanation"
+          />
+        </div>
+
+        <p id="cron-error" role="alert" class="text-xs text-warning mb-4 min-h-[1.25rem] font-mono"></p>
+
+        <!-- Field breakdown -->
+        <div id="cron-explanation" aria-live="polite" class="mb-6">
+          <div id="cron-fields" class="grid grid-cols-5 gap-2 mb-4 hidden">
+            {['Minute', 'Hour', 'Day of month', 'Month', 'Day of week'].map((f, i) => (
+              <div class="bg-bg border border-border rounded p-2 text-center">
+                <div id={`cron-field-${i}`} class="font-mono text-sm text-accent font-medium mb-1">*</div>
+                <div class="text-[0.6rem] text-subtle uppercase tracking-wide">{f}</div>
+              </div>
+            ))}
+          </div>
+          <p id="cron-description" class="text-sm text-muted leading-relaxed"></p>
+        </div>
+
+        <!-- Field reference -->
+        <details class="group">
+          <summary class="cursor-pointer text-xs font-mono text-subtle hover:text-muted transition-colors list-none flex items-center gap-2 mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-open:rotate-90" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            Field reference
+          </summary>
+          <div class="mt-2 overflow-x-auto">
+            <table class="w-full text-xs font-mono border-collapse">
+              <thead>
+                <tr class="border-b border-border">
+                  <th class="text-left text-subtle py-2 pr-4 font-medium">Field</th>
+                  <th class="text-left text-subtle py-2 pr-4 font-medium">Range</th>
+                  <th class="text-left text-subtle py-2 font-medium">Special</th>
+                </tr>
+              </thead>
+              <tbody class="text-muted">
+                <tr class="border-b border-border/50"><td class="py-2 pr-4">Minute</td><td class="py-2 pr-4">0–59</td><td class="py-2">* , - /</td></tr>
+                <tr class="border-b border-border/50"><td class="py-2 pr-4">Hour</td><td class="py-2 pr-4">0–23</td><td class="py-2">* , - /</td></tr>
+                <tr class="border-b border-border/50"><td class="py-2 pr-4">Day of month</td><td class="py-2 pr-4">1–31</td><td class="py-2">* , - / ?</td></tr>
+                <tr class="border-b border-border/50"><td class="py-2 pr-4">Month</td><td class="py-2 pr-4">1–12</td><td class="py-2">* , - /</td></tr>
+                <tr><td class="py-2 pr-4">Day of week</td><td class="py-2 pr-4">0–7 (0=Sun)</td><td class="py-2">* , - / ?</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+
+        <!-- Common examples -->
+        <div class="mt-6 pt-6 border-t border-border">
+          <p class="text-xs font-mono text-subtle uppercase tracking-widest mb-3">Common examples</p>
+          <div class="flex flex-wrap gap-2" id="cron-examples">
+            {[
+              { expr: '* * * * *',       label: 'Every minute' },
+              { expr: '0 * * * *',       label: 'Every hour' },
+              { expr: '0 9 * * 1-5',     label: 'Weekdays 9am' },
+              { expr: '0 0 * * *',       label: 'Daily midnight' },
+              { expr: '0 0 1 * *',       label: 'Monthly' },
+              { expr: '0 0 * * 0',       label: 'Weekly Sunday' },
+              { expr: '*/15 * * * *',    label: 'Every 15 min' },
+              { expr: '0 9,17 * * 1-5',  label: 'Weekdays 9am & 5pm' },
+            ].map(({ expr, label }) => (
+              <button
+                type="button"
+                class="cron-example-btn px-3 py-1.5 text-xs font-mono bg-bg border border-border rounded text-muted hover:border-accent/50 hover:text-text transition-colors"
+                data-expr={expr}
+              >
+                {expr}
+                <span class="text-subtle ml-1">— {label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<script>
+// ─── JSON Formatter ───────────────────────────────────────────────────────────
+const jsonInput  = document.getElementById('json-input')  as HTMLTextAreaElement;
+const jsonOutput = document.getElementById('json-output') as HTMLTextAreaElement;
+const jsonError  = document.getElementById('json-error')  as HTMLElement;
+
+function clearJsonError() { jsonError.textContent = ''; }
+function setJsonError(msg: string) { jsonError.textContent = msg; }
+
+document.getElementById('json-format-btn')?.addEventListener('click', () => {
+  clearJsonError();
+  const raw = jsonInput.value.trim();
+  if (!raw) { setJsonError('No input to format.'); return; }
+  try {
+    jsonOutput.value = JSON.stringify(JSON.parse(raw), null, 2);
+  } catch (e: unknown) {
+    jsonOutput.value = '';
+    setJsonError(e instanceof Error ? e.message : 'Invalid JSON');
+  }
+});
+
+document.getElementById('json-validate-btn')?.addEventListener('click', () => {
+  clearJsonError();
+  const raw = jsonInput.value.trim();
+  if (!raw) { setJsonError('No input to validate.'); return; }
+  try {
+    JSON.parse(raw);
+    jsonError.textContent = '✓ Valid JSON';
+    jsonError.className = 'text-xs text-success mb-4 min-h-[1.25rem] font-mono';
+  } catch (e: unknown) {
+    setJsonError(e instanceof Error ? `Invalid: ${e.message}` : 'Invalid JSON');
+  }
+});
+
+document.getElementById('json-copy-btn')?.addEventListener('click', async () => {
+  const val = jsonOutput.value;
+  if (!val) return;
+  await navigator.clipboard.writeText(val);
+});
+
+document.getElementById('json-clear-btn')?.addEventListener('click', () => {
+  jsonInput.value = '';
+  jsonOutput.value = '';
+  clearJsonError();
+});
+
+// ─── Base64 ───────────────────────────────────────────────────────────────────
+let b64Mode: 'encode' | 'decode' = 'encode';
+const b64Input      = document.getElementById('b64-input')       as HTMLTextAreaElement;
+const b64Output     = document.getElementById('b64-output')      as HTMLTextAreaElement;
+const b64Error      = document.getElementById('b64-error')       as HTMLElement;
+const b64RunBtn     = document.getElementById('b64-run-btn')     as HTMLButtonElement;
+const b64InputLabel = document.getElementById('b64-input-label') as HTMLElement;
+const b64OutLabel   = document.getElementById('b64-output-label')as HTMLElement;
+
+function clearB64Error() { b64Error.textContent = ''; }
+
+document.querySelectorAll<HTMLButtonElement>('.b64-mode-btn').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    b64Mode = btn.dataset.mode as 'encode' | 'decode';
+    document.querySelectorAll<HTMLButtonElement>('.b64-mode-btn').forEach((b) => {
+      const active = b.dataset.mode === b64Mode;
+      b.className = `b64-mode-btn px-4 py-1.5 text-xs font-medium rounded border transition-colors ${active ? 'bg-accent text-bg border-accent' : 'text-muted border-border hover:text-text hover:border-border/80'}`;
+    });
+    b64RunBtn.textContent = b64Mode === 'encode' ? 'Encode' : 'Decode';
+    b64InputLabel.textContent = b64Mode === 'encode' ? 'Plain text' : 'Base64 input';
+    b64OutLabel.textContent   = b64Mode === 'encode' ? 'Base64' : 'Decoded text';
+    b64Input.placeholder  = b64Mode === 'encode' ? 'Text to encode…' : 'Base64 to decode…';
+    b64Output.value = '';
+    clearB64Error();
+  });
+});
+
+b64RunBtn.addEventListener('click', () => {
+  clearB64Error();
+  const val = b64Input.value;
+  if (!val) { b64Error.textContent = 'No input provided.'; return; }
+  try {
+    if (b64Mode === 'encode') {
+      // Encode UTF-8 → Base64
+      b64Output.value = btoa(
+        encodeURIComponent(val).replace(/%([0-9A-F]{2})/g, (_, p1) =>
+          String.fromCharCode(parseInt(p1, 16))
+        )
+      );
+    } else {
+      // Decode Base64 → UTF-8
+      b64Output.value = decodeURIComponent(
+        atob(val).split('').map((c) =>
+          '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+        ).join('')
+      );
+    }
+  } catch (e: unknown) {
+    b64Output.value = '';
+    b64Error.textContent = e instanceof Error ? e.message : 'Invalid input.';
+  }
+});
+
+document.getElementById('b64-copy-btn')?.addEventListener('click', async () => {
+  const val = b64Output.value;
+  if (val) await navigator.clipboard.writeText(val);
+});
+
+document.getElementById('b64-clear-btn')?.addEventListener('click', () => {
+  b64Input.value = '';
+  b64Output.value = '';
+  clearB64Error();
+});
+
+// ─── Cron Helper ──────────────────────────────────────────────────────────────
+const cronInput       = document.getElementById('cron-input')       as HTMLInputElement;
+const cronError       = document.getElementById('cron-error')       as HTMLElement;
+const cronFields      = document.getElementById('cron-fields')      as HTMLElement;
+const cronDescription = document.getElementById('cron-description') as HTMLElement;
+
+const FIELD_NAMES = ['Minute', 'Hour', 'Day of month', 'Month', 'Day of week'];
+const DOW = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const MONTHS = ['January','February','March','April','May','June',
+                'July','August','September','October','November','December'];
+
+function parseCronField(val: string, label: string): string {
+  if (val === '*') return `any ${label.toLowerCase()}`;
+  if (val.startsWith('*/')) {
+    const n = val.slice(2);
+    return `every ${n} ${label.toLowerCase()}${Number(n) > 1 ? 's' : ''}`;
+  }
+  if (val.includes('-')) {
+    const [a, b] = val.split('-');
+    if (label === 'Day of week') return `${DOW[+a] ?? a} through ${DOW[+b] ?? b}`;
+    if (label === 'Month') return `${MONTHS[(+a)-1] ?? a} through ${MONTHS[(+b)-1] ?? b}`;
+    return `${a} through ${b}`;
+  }
+  if (val.includes(',')) {
+    const parts = val.split(',');
+    if (label === 'Day of week') return parts.map(d => DOW[+d] ?? d).join(', ');
+    if (label === 'Month') return parts.map(m => MONTHS[(+m)-1] ?? m).join(', ');
+    return parts.join(', ');
+  }
+  if (label === 'Day of week') return DOW[+val] ?? val;
+  if (label === 'Month') return MONTHS[(+val)-1] ?? val;
+  return val;
+}
+
+function explainCron(expr: string): void {
+  cronError.textContent = '';
+  cronDescription.textContent = '';
+  cronFields.classList.add('hidden');
+
+  const parts = expr.trim().split(/\s+/);
+  if (parts.length !== 5) {
+    cronError.textContent = `A standard cron expression has 5 fields — found ${parts.length}.`;
+    return;
+  }
+
+  cronFields.classList.remove('hidden');
+  parts.forEach((p, i) => {
+    const el = document.getElementById(`cron-field-${i}`);
+    if (el) el.textContent = p;
+  });
+
+  const [min, hr, dom, mon, dow] = parts.map((p, i) => parseCronField(p, FIELD_NAMES[i]));
+  cronDescription.textContent =
+    `Runs at ${hr === 'any hour' ? 'every hour' : `hour ${hr}`}, ` +
+    `minute ${min === 'any minute' ? '0' : min}, ` +
+    `on ${dom === 'any day of month' ? 'every day' : `day ${dom}`} ` +
+    `of ${mon === 'any month' ? 'every month' : mon}, ` +
+    `${dow === 'any day of week' ? 'every day of the week' : `on ${dow}`}.`;
+}
+
+cronInput.addEventListener('input', () => {
+  if (cronInput.value.trim()) explainCron(cronInput.value);
+  else {
+    cronError.textContent = '';
+    cronDescription.textContent = '';
+    cronFields.classList.add('hidden');
+  }
+});
+
+document.getElementById('cron-examples')?.addEventListener('click', (e) => {
+  const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('.cron-example-btn');
+  if (!btn) return;
+  cronInput.value = btn.dataset.expr ?? '';
+  explainCron(cronInput.value);
+});
+</script>

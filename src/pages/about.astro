@@ -1,0 +1,93 @@
+---
+// src/pages/about.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ButtonLink from '../components/ui/ButtonLink.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  title="About"
+  description="Learn about Mohammad Azharuddin — Lead Integration Architect, Pega CSSA, and software engineer since December 2012."
+>
+  <div class="container-content py-20 sm:py-28">
+    <div class="max-w-article">
+      <!-- Eyebrow + heading -->
+      <p class="text-eyebrow mb-4">About me</p>
+      <h1 class="text-3xl sm:text-4xl font-bold text-text tracking-tight mb-8 text-balance">
+        Mohammad Azharuddin
+      </h1>
+
+      <!-- Introduction -->
+      <div class="prose text-muted leading-relaxed space-y-6 mb-12">
+        <p class="text-text text-lg">
+          I'm a software engineer and Certified Pega Senior System Architect (CSSA) based in Hyderabad,
+          India. With continuous enterprise IT experience since December 2012, I specialize in architecting
+          high-throughput data integrations, log analytics and observability (Splunk), enterprise workflows
+          on Pega Platform (8.8.3), and engineering developer automation tools that solve real operational challenges.
+        </p>
+
+        <h2 class="text-xl font-bold text-text">Career Background</h2>
+        <p>
+          My engineering journey began with an Electronics & Communication Engineering degree from
+          Osmania University (MJ College of Engineering and Technology) in 2012. I started my career in December 2012
+          at <strong>Wipro Technologies</strong>, where I ranked first in my training batch of 40+ peers
+          and earned a Certificate of Recognition for rapid proof-of-concept development in Python, web applications, and Linux systems.
+        </p>
+        <p>
+          In 2015, I joined <strong>Astreya supporting the Google India account</strong>, spending over six years
+          architecting Pega workflows, secure Google Drive API attachment integrations, and developing an internal
+          tooling suite of browser extensions, automated CSAT pipelines with BigQuery, and operational chatbots.
+        </p>
+        <p>
+          At <strong>Cognizant</strong>, I serve as Lead Integration Architect and Pega Senior System Architect,
+          leading engineering teams in delivering microservices integrations, automated Python data pipelines,
+          Splunk log observability, and enterprise case management workflows. Through disciplined defect grooming
+          and case assignment redesign, our team improved SLA compliance from 92% to 98% and reduced defect resolution turnaround by 15%.
+        </p>
+
+        <h2 class="text-xl font-bold text-text">Hands-On Technical Exploration & aforapple.fun</h2>
+        <p>
+          I strongly believe that hands-on exploration beyond daily enterprise tooling keeps an engineer sharp and adaptable.
+          As a personal engineering project, I created <a href="https://aforapple.fun" target="_blank" rel="noopener noreferrer" class="text-accent underline hover:text-accent-hover">aforapple.fun</a>,
+          an interactive educational web application designed for early childhood learners and classroom smart TVs. Building it end-to-end — from HTML5 canvas tracing logic and Smart TV D-pad remote navigation to lightweight serverless APIs and Android packaging — offered valuable hands-on experience in building accessible, low-latency client experiences.
+        </p>
+
+        <h2 class="text-xl font-bold text-text">Engineering Principles</h2>
+        <ul class="list-none p-0 space-y-3">
+          <li class="flex items-start gap-3">
+            <span class="text-accent font-bold mt-0.5">01.</span>
+            <span><strong>Understand the problem before touching code:</strong> The best software is often the simplest workflow that eliminates operational friction.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-accent font-bold mt-0.5">02.</span>
+            <span><strong>Guardrails & maintainability matter:</strong> Whether in Pega PRPC or Python microservices, adhering to strict design guardrails saves months of migration pain later.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-accent font-bold mt-0.5">03.</span>
+            <span><strong>Automate the mundane:</strong> Repetitive human steps are opportunities to build clean scripts, browser extensions, or queue processors.</span>
+          </li>
+        </ul>
+
+        <h2 class="text-xl font-bold text-text">Technical Exploration</h2>
+        <p>
+          I am an early and active adopter of Agentic AI coding workflows (Claude Code, OpenAI Codex) to accelerate
+          architectural reviews, test automation, and system refactoring. I hold CSSA and CSA certifications, and am currently
+          preparing for the <strong>Pega Lead System Architect (LSA)</strong> certification.
+        </p>
+      </div>
+
+      <!-- CTAs -->
+      <div class="flex flex-wrap gap-4 pt-8 border-t border-border">
+        <ButtonLink href="/experience" variant="primary" size="md">
+          View full experience
+        </ButtonLink>
+        <ButtonLink href={site.resumePath} variant="secondary" size="md" external>
+          Download resume (PDF)
+        </ButtonLink>
+        <ButtonLink href="/contact" variant="ghost" size="md">
+          Get in touch
+        </ButtonLink>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

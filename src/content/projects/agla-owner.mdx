@@ -1,0 +1,50 @@
+---
+title: "AglaOwner — Serverless Property Discovery Architecture"
+description: "A lightweight, zero-maintenance architectural prototype exploring serverless Google Apps Script backends and static Jamstack frontends for structured directories."
+category: "independent"
+status: "published"
+featured: false
+technologies:
+  - "JavaScript"
+  - "Google Apps Script"
+  - "Google Sheets API"
+  - "GitHub Pages"
+  - "HTML5 / CSS3"
+  - "REST Endpoints"
+repositoryUrl: "https://github.com/azhar4114/aowner.in"
+publishedAt: "2024-07-01"
+---
+
+## Overview
+
+**AglaOwner** (`aowner.in`) is an open architectural prototype designed and developed by Mohammad Azharuddin to explore zero-cost, zero-maintenance web architectures for directory and discovery applications.
+
+The engineering focus of the project was **zero-cost, zero-maintenance operational longevity**: exploring how a functional directory application can run reliably without requiring a dedicated virtual machine, container cluster, or monthly database maintenance fee.
+
+---
+
+## Architecture & Implementation
+
+### 1. Static Jamstack Frontend on GitHub Pages
+- Built with modular vanilla JavaScript, semantic HTML5, and responsive CSS3.
+- Sub-second asset delivery served globally over Cloudflare/GitHub Pages CDN.
+- Clean page segregation: home discovery (`index.html`), multi-criteria property browser (`browse.html`), detailed listing view (`listing.html`), and seller onboarding (`sell.html`).
+
+### 2. Query-Param Serverless API Routing
+Instead of managing a persistent Node.js or Python server, the backend is implemented as a serverless Google Apps Script web application deploying a query-param micro-router:
+```
+GET /exec?route=listings       -> Fetch filtered property records
+GET /exec?route=listing&id=... -> Fetch granular listing metadata
+POST /exec?route=submit        -> Ingest and sanitize verified owner submissions
+```
+
+### 3. Google Sheets as Relational Datastore
+- Utilizes Google Sheets as a structured, low-friction relational database with row-level validation.
+- Enables simple data inspection, review, and moderation directly within a familiar spreadsheet interface without requiring custom admin dashboard development.
+
+---
+
+## Architectural Lessons
+
+- **Serverless for Directory Architectures:** For directory prototypes and lightweight data-collection tools, leveraging serverless execution environments like Google Apps Script paired with static CDNs eliminates cloud hosting bills while maintaining 99.9% uptime.
+- **Pragmatic Tooling:** Prioritizing simple, auditable systems enables rapid launch and continuous operation with near-zero ongoing maintenance overhead.

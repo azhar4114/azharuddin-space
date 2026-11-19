@@ -1,0 +1,118 @@
+---
+// src/pages/contact.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  title="Contact"
+  description="Contact Mohammad Azharuddin — Lead Integration Architect, Pega CSSA, and software engineer."
+>
+  <div class="container-content py-20 sm:py-28">
+    <div class="max-w-article">
+      <p class="text-eyebrow mb-4">Connect</p>
+      <h1 class="text-3xl sm:text-4xl font-bold text-text tracking-tight mb-4">
+        Get In Touch
+      </h1>
+      <p class="text-muted leading-relaxed mb-12">
+        I welcome conversations with fellow engineers, architects, and technology enthusiasts
+        regarding enterprise integrations, observability, Pega architecture, or educational technology.
+      </p>
+
+      <!-- Contact methods -->
+      <div class="flex flex-col gap-5 mb-16">
+        <!-- Email -->
+        <div class="flex items-start gap-5 p-6 bg-surface border border-border rounded-lg">
+          <div class="shrink-0 mt-0.5 text-accent">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between gap-3 mb-1">
+              <h2 class="text-sm font-semibold text-text">Direct Email</h2>
+              <span class="text-[0.65rem] font-mono text-accent bg-accent/10 border border-accent/30 px-2 py-0.5 rounded">
+                Preferred
+              </span>
+            </div>
+            <p class="text-muted text-xs mb-2">Direct channel for technical discussions and correspondence.</p>
+            <a
+              href={`mailto:${site.email}`}
+              class="font-mono text-sm text-accent hover:text-accent-hover transition-colors no-underline font-medium"
+            >
+              {site.email}
+            </a>
+          </div>
+        </div>
+
+        <!-- LinkedIn -->
+        <div class="flex items-start gap-5 p-6 bg-surface border border-border rounded-lg">
+          <div class="shrink-0 mt-0.5 text-accent">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <h2 class="text-sm font-semibold text-text mb-1">LinkedIn</h2>
+            <p class="text-muted text-xs mb-2">Professional network and engineering articles.</p>
+            <a
+              href={site.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-mono text-sm text-accent hover:text-accent-hover transition-colors no-underline font-medium"
+            >
+              linkedin.com/in/azhar4114 ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- GitHub -->
+        <div class="flex items-start gap-5 p-6 bg-surface border border-border rounded-lg">
+          <div class="shrink-0 mt-0.5 text-accent">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <h2 class="text-sm font-semibold text-text mb-1">GitHub</h2>
+            <p class="text-muted text-xs mb-2">Code repositories, tools, and personal experiments.</p>
+            <a
+              href={site.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-mono text-sm text-accent hover:text-accent-hover transition-colors no-underline font-medium"
+            >
+              github.com/azhar4114 ↗
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scope Guide -->
+      <div class="p-6 bg-surface border border-border rounded-lg">
+        <h3 class="text-sm font-semibold text-text mb-2">Topics I welcome discussing</h3>
+        <ul class="text-xs text-muted space-y-2 list-none p-0 m-0">
+          <li class="flex items-start gap-2">
+            <span class="text-accent" aria-hidden="true">→</span>
+            <span><strong>Integration & Microservices Architecture:</strong> High-throughput RESTful patterns, data onboarding pipelines, and system refactoring.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-accent" aria-hidden="true">→</span>
+            <span><strong>Observability & Splunk Telemetry:</strong> SPL query tuning, Technology Add-ons, log normalization, and monitoring health.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-accent" aria-hidden="true">→</span>
+            <span><strong>Pega Platform Architecture:</strong> Case lifecycle design, queue processors, guardrail governance, and upgradeability.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-accent" aria-hidden="true">→</span>
+            <span><strong>Educational Web Tech:</strong> Interactive HTML5 Canvas interfaces, Smart TV browser optimizations, and lightweight web apps.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

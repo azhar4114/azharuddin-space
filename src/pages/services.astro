@@ -1,0 +1,99 @@
+---
+// src/pages/services.astro
+// Framed as Technical Capabilities & Engineering Practices to ensure complete compliance
+// and workplace safety for enterprise IT environments.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ButtonLink from '../components/ui/ButtonLink.astro';
+
+const capabilities = [
+  {
+    title: 'Enterprise Workflow & BPM Architecture',
+    description:
+      'Designing robust case lifecycles, microjourneys, and asynchronous processing on Pega Platform (8.8.3). Enforcing strict guardrails, BIX data extracts, and high-performance queue processing.',
+    areas: ['Case Lifecycle Design', 'Queue Processors & Job Schedulers', 'SLA Governance', 'Pega Guardrails & PDC Health'],
+  },
+  {
+    title: 'API & Microservices Integration',
+    description:
+      'Architecting resilient RESTful and SOAP integration frameworks. Implementing clean data transformations, connection pooling, idempotency keys, and error classification.',
+    areas: ['REST / SOAP Services', 'Microservices Architecture', 'OAuth 2.0 & Token Lifecycles', 'Idempotency & Backoff Handling'],
+  },
+  {
+    title: 'Observability & Log Analytics (Splunk)',
+    description:
+      'Designing high-throughput data onboarding pipelines, Splunk Technology Add-ons (AWS TA), and SPL query optimization for deep visibility across distributed platforms.',
+    areas: ['SPL Query Tuning', 'Field Extractions & Data Models', 'Indexer & Search Head Health', 'Alerting & SLA Monitoring'],
+  },
+  {
+    title: 'Internal Tooling & Workflow Automation',
+    description:
+      'Eliminating manual operational friction by engineering custom browser extensions (Manifest v3), automated Python data pipelines, and interactive chatbots.',
+    areas: ['Chrome Extension Development', 'Python Automation Scripts', 'Google Apps Script & APIs', 'Client-Side Caching (TTL)'],
+  },
+  {
+    title: 'Cloud Infrastructure & Data Pipelines',
+    description:
+      'Connecting enterprise platforms with cloud services — Google Drive API attachment offloading, GCP Cloud Storage syncing, and AWS cloud-native configurations.',
+    areas: ['GCP & BigQuery Analytics', 'AWS (EC2, S3, IAM, VPC)', 'Containerization (Docker)', 'CI/CD Pipelines (Jenkins, Git)'],
+  },
+  {
+    title: 'Engineering Leadership & Mentorship',
+    description:
+      'Fostering technical excellence through structured code reviews, defect triaging, cross-skilling across Agile/Scrum ceremonies, and elevating team velocity.',
+    areas: ['Defect Triaging & Grooming', 'Code Review Best Practices', 'Agile / Scrum Delivery', 'Cross-Skilling & Mentorship'],
+  },
+];
+---
+
+<BaseLayout
+  title="Capabilities"
+  description="Technical capabilities and engineering practices of Mohammad Azharuddin — Pega architecture, observability, microservices, and automation."
+>
+  <div class="container-content py-20 sm:py-28">
+    <!-- Header -->
+    <div class="max-w-2xl mb-16">
+      <p class="text-eyebrow mb-4">Engineering Disciplines</p>
+      <h1 class="text-3xl sm:text-4xl font-bold text-text tracking-tight mb-4">
+        Technical Capabilities
+      </h1>
+      <p class="text-muted leading-relaxed">
+        An overview of my core engineering focus areas across enterprise workflow architecture,
+        observability systems, cloud integrations, and developer productivity tooling.
+      </p>
+    </div>
+
+    <!-- Capabilities Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
+      {capabilities.map((item) => (
+        <div class="p-6 bg-surface border border-border rounded-lg">
+          <h2 class="text-base font-semibold text-text mb-2.5">{item.title}</h2>
+          <p class="text-muted text-sm leading-relaxed mb-4">{item.description}</p>
+          <div>
+            <p class="text-xs font-mono text-subtle uppercase tracking-widest mb-2">Core Focus</p>
+            <ul class="list-none p-0 m-0 space-y-1">
+              {item.areas.map((area) => (
+                <li class="text-xs text-muted flex items-start gap-2">
+                  <span class="text-accent mt-0.5" aria-hidden="true">—</span>
+                  {area}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Connect Box -->
+    <div class="max-w-xl p-8 bg-surface border border-border rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+      <div>
+        <h2 class="text-lg font-bold text-text mb-1">Want to discuss technical architecture?</h2>
+        <p class="text-muted text-xs leading-relaxed">
+          I'm always glad to connect with fellow engineers and discuss system design, Pega, and observability.
+        </p>
+      </div>
+      <ButtonLink href="/contact" variant="primary" size="sm">
+        Connect
+      </ButtonLink>
+    </div>
+  </div>
+</BaseLayout>

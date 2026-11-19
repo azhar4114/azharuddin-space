@@ -1,0 +1,57 @@
+---
+title: "Cloud Integrations & Secure Attachment Lifecycle"
+description: "Architecting cloud-native document storage integrations with Google Drive APIs, automated cloud bucket syncing, and BigQuery data pipelines."
+category: "professional-case-study"
+status: "published"
+featured: false
+technologies:
+  - "Google Cloud Platform (GCP)"
+  - "Google Drive APIs"
+  - "Google Apps Script"
+  - "BigQuery"
+  - "REST APIs"
+  - "OAuth 2.0"
+publishedAt: "2024-03-01"
+---
+
+> **Sanitised Case Study:** This case study highlights general cloud integration patterns, authentication lifecycles, and automated data synchronization between enterprise workflow platforms and Google Cloud Platform services. Specific internal project names, hostnames, and credentials have been removed.
+
+## Overview
+
+Enterprise applications often generate high volumes of documentation, attachments, audit receipts, and export files. Storing attachments directly in transactional database tables degrades operational performance and escalates storage costs.
+
+This case study outlines the architecture of integrating enterprise workflow applications with **Google Cloud Platform (GCP)** and **Google Drive APIs** for offloaded attachment storage, automated daily data exports to Google Cloud Storage buckets, and real-time analytical reporting in Google BigQuery.
+
+---
+
+## Architectural Challenges
+
+1. **Storage Optimization:** Prevent heavy binary attachments (PDFs, images, diagnostic logs) from swelling transactional database tables.
+2. **Secure Authentication:** Implement robust OAuth 2.0 service account token exchanges without exposing persistent credentials or API secrets in application code.
+3. **Automated Cross-System Synchronization:** Reconcile provisioning data between disparate internal portals with reliable batch exports and ingestion routines.
+4. **Analytical Visibility:** Streamline operational feedback metrics into an analytical data store (BigQuery) for real-time dashboarding.
+
+---
+
+## Engineering Solutions
+
+### 1. Google Drive Attachment Storage Integration
+- Designed and implemented RESTful connectors adhering to OAuth 2.0 service account authentication to stream attachment uploads directly into dedicated Google Drive directory structures.
+- Stored lightweight file metadata, Drive file IDs, and cryptographically verified hashes in the workflow database rather than binary BLOBs.
+- Enabled instantaneous retrieval and permission-scoped viewing links for authorized operators, cutting transactional database growth by over 60%.
+
+### 2. Automated Cloud Storage Pipeline
+- Developed automated synchronization jobs using Google Apps Script with Google Service Accounts to extract daily grid tables.
+- Packaged and pushed daily delta exports directly to secure Google Cloud Storage buckets.
+- Downstream systems consumed bucket events to update circuit provisioning statuses with zero manual intervention.
+
+### 3. BigQuery Analytical Integration
+- Streamed structured customer satisfaction (CSAT) metrics and ticket escalation events into Google BigQuery.
+- Enabled multi-dimensional operational reporting and performance scorecards across operational teams.
+
+---
+
+## Key Lessons
+
+- **Offload Heavy Binary Assets Early:** Offloading document storage to dedicated cloud storage layers keeps relational and workflow databases lightweight, highly indexable, and rapid to back up.
+- **Service Accounts with Scoped Permissions:** Applying the principle of least privilege with short-lived Google Service Account tokens guarantees security without complicating runtime operations.

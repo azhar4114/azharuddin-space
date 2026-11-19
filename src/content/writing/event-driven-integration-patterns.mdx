@@ -1,0 +1,50 @@
+---
+title: "Event-Driven Integration Patterns with Cloud Services"
+description: "Exploring common patterns for connecting systems via event streams, covering fan-out, ordering guarantees and error handling."
+pubDate: "2025-10-15"
+tags: ["Cloud", "Events", "Architecture"]
+category: "Cloud"
+draft: true
+---
+
+> **Draft** — This article is a draft placeholder. The owner should write or review this content before publishing. The title and topic are from the content brief; the body below is an outline only.
+
+## Introduction
+
+Event-driven integration has become the standard approach for connecting loosely coupled services in cloud environments. Rather than services calling each other directly, they publish events to a shared bus or queue and consumers react to those events independently.
+
+This article covers common patterns that come up repeatedly in cloud integration work: fan-out, ordering, exactly-once semantics, dead-letter handling, and observability.
+
+## Why event-driven?
+
+{/* TODO:WRITE — coupling, scalability, resilience trade-offs vs synchronous integration */}
+
+## Core patterns
+
+### Fan-out
+
+{/* TODO:WRITE — single event, multiple consumers, SNS/SQS, EventBridge, pub/sub patterns */}
+
+### Ordering guarantees
+
+{/* TODO:WRITE — when ordering matters, FIFO queues, partition keys, the trade-offs of ordering with scaling */}
+
+### Exactly-once vs at-least-once
+
+{/* TODO:WRITE — the practical reality: at-least-once delivery + idempotent consumers is the common pattern, why exactly-once is harder than it sounds */}
+
+### Dead-letter queues
+
+{/* TODO:WRITE — purpose of DLQs, what to do with dead-lettered events, alerting, replay patterns */}
+
+## Error handling
+
+{/* TODO:WRITE — transient vs permanent failures, poisoned messages, back pressure */}
+
+## Observability
+
+{/* TODO:WRITE — tracing events across services, correlation IDs, what to measure */}
+
+## Summary
+
+{/* TODO:WRITE — when to use event-driven, when not to, practical starting point */}

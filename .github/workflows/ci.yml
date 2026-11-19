@@ -1,0 +1,40 @@
+name: CI & Build Verification
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build & Verify
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check (Astro Check)
+        run: npx astro check
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Verify build artifacts
+        run: |
+          test -d dist || { echo "dist/ missing"; exit 1; }
+          test -f dist/index.html || { echo "index.html missing"; exit 1; }
+          test -f dist/sitemap.xml || { echo "sitemap.xml missing"; exit 1; }
+          test -f dist/og/og-default.png || { echo "og-default.png missing"; exit 1; }
+          test -f dist/resume/Mohammad_Azharuddin_Resume.pdf || { echo "Resume PDF missing"; exit 1; }
+          echo "All production artifacts verified successfully!"

@@ -1,0 +1,59 @@
+---
+// src/components/layout/SiteHeader.astro
+import { navLinks } from '../../data/navigation';
+import { site } from '../../data/site';
+import MobileNav from './MobileNav.astro';
+---
+
+<header
+  class="sticky top-0 z-50 w-full border-b border-border/60 bg-bg/95 backdrop-blur-sm"
+  role="banner"
+>
+  <div class="container-content flex items-center justify-between h-16">
+    <!-- Logo / Brand -->
+    <a
+      href="/"
+      class="group flex items-center gap-2 no-underline"
+      aria-label={`${site.name} — home`}
+    >
+      <!-- Monogram mark -->
+      <span
+        class="inline-flex items-center justify-center w-8 h-8 rounded bg-accent text-bg font-mono font-bold text-sm select-none transition-transform duration-200 group-hover:scale-105"
+        aria-hidden="true"
+      >
+        A.
+      </span>
+      <span class="font-semibold text-text tracking-tight text-sm hidden sm:inline">
+        azharuddin<span class="text-subtle">.space</span>
+      </span>
+    </a>
+
+    <!-- Desktop navigation -->
+    <nav
+      aria-label="Main navigation"
+      class="hidden md:flex items-center gap-1"
+    >
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="relative px-3 py-1.5 text-sm text-muted hover:text-text transition-colors duration-150 rounded no-underline hover:bg-surface-raised"
+        >
+          {link.label}
+        </a>
+      ))}
+
+      <!-- Resume CTA -->
+      <a
+        href={site.resumePath}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="ml-3 px-4 py-1.5 text-sm font-medium text-bg bg-accent hover:bg-accent-hover rounded transition-colors duration-150 no-underline"
+      >
+        Resume
+      </a>
+    </nav>
+
+    <!-- Mobile nav toggle -->
+    <MobileNav />
+  </div>
+</header>

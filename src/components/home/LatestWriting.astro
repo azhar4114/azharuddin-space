@@ -1,0 +1,40 @@
+---
+// src/components/home/LatestWriting.astro
+import { getCollection } from 'astro:content';
+import ArticleCard from '../writing/ArticleCard.astro';
+import ButtonLink from '../ui/ButtonLink.astro';
+
+const allArticles = await getCollection('writing');
+const articles = allArticles
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+  .slice(0, 3);
+---
+
+<section class="py-20 sm:py-24 border-t border-border">
+  <div class="container-content">
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10">
+      <div>
+        <p class="text-eyebrow mb-3">Writing</p>
+        <h2 class="text-2xl sm:text-3xl font-bold text-text tracking-tight">
+          Engineering notes
+        </h2>
+      </div>
+      <ButtonLink href="/writing" variant="ghost" size="sm">
+        All articles →
+      </ButtonLink>
+    </div>
+
+    <div class="flex flex-col gap-0">
+      {articles.map((article) => (
+        <ArticleCard
+          title={article.data.title}
+          description={article.data.description}
+          slug={article.slug}
+          pubDate={new Date(article.data.pubDate)}
+          tags={article.data.tags}
+          category={article.data.category}
+        />
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+---
+// src/components/ui/TagList.astro
+
+interface Props {
+  tags: string[];
+  size?: 'sm' | 'xs';
+}
+
+const { tags, size = 'xs' } = Astro.props;
+
+const sizeClasses = {
+  xs: 'text-[0.65rem] px-2 py-0.5',
+  sm: 'text-xs px-2.5 py-1',
+};
+---
+
+{tags.length > 0 && (
+  <ul class="flex flex-wrap gap-1.5 list-none p-0 m-0" aria-label="Technologies">
+    {tags.map((tag) => (
+      <li>
+        <span
+          class={`inline-block font-mono font-medium text-subtle bg-surface border border-border rounded ${sizeClasses[size]} leading-none`}
+        >
+          {tag}
+        </span>
+      </li>
+    ))}
+  </ul>
+)}
