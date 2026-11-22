@@ -81,6 +81,10 @@
   a:hover {
     color: var(--color-accent-hover);
   }
+  a.bg-accent:hover,
+  a.text-bg:hover {
+    color: var(--color-bg) !important;
+  }
 
   /* Focus rings — consistent and visible */
   :focus-visible {

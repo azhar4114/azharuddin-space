@@ -26,4 +26,8 @@ export const site = {
   locale: 'en-GB',
   experienceStartYear: 2012,
   experienceStartMonth: 'December',
+  // Tracking & Analytics (Google Tag Manager / GA4 / Cloudflare)
+  gtmId: 'GTM-WNF9XSHM',
+  googleAnalyticsId: '', // e.g. 'G-XXXXXXXXXX'
+  cloudflareBeaconToken: '',
 };

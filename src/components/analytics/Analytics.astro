@@ -1,0 +1,80 @@
+---
+// src/components/analytics/Analytics.astro
+// Lightweight, privacy-conscious analytics component supporting Google Tag Manager (GTM),
+// Google Analytics 4 (GA4), and Cloudflare Web Analytics.
+import { site } from '../../data/site';
+
+interface Props {
+  gtmId?: string;
+  googleAnalyticsId?: string;
+  cloudflareBeaconToken?: string;
+}
+
+const gtmId =
+  Astro.props.gtmId ||
+  import.meta.env.PUBLIC_GTM_ID ||
+  site.gtmId;
+
+const gaId =
+  Astro.props.googleAnalyticsId ||
+  import.meta.env.PUBLIC_GA_ID ||
+  site.googleAnalyticsId;
+
+const cfToken =
+  Astro.props.cloudflareBeaconToken ||
+  import.meta.env.PUBLIC_CLOUDFLARE_BEACON_TOKEN ||
+  site.cloudflareBeaconToken;
+---
+
+{/* Google Tag Manager (GTM) */}
+{gtmId && (
+  <>
+    <script
+      is:inline
+      async
+      src={`https://www.googletagmanager.com/gtm.js?id=${gtmId}`}
+    ></script>
+    <script is:inline define:vars={{ gtmId }}>
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js',
+      });
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+    </script>
+  </>
+)}
+
+{/* Google Analytics 4 (GA4) standalone if GTM is not configured */}
+{!gtmId && gaId && (
+  <>
+    <script
+      is:inline
+      async
+      src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+    ></script>
+    <script is:inline define:vars={{ gaId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', gaId, {
+        anonymize_ip: true,
+      });
+    </script>
+  </>
+)}
+
+{/* Cloudflare Web Analytics */}
+{cfToken && (
+  <script
+    is:inline
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon={`{"token": "${cfToken}"}`}
+  ></script>
+)}
