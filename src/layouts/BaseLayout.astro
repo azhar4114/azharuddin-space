@@ -88,7 +88,6 @@ const jsonLdWebsite = isHome ? JSON.stringify({
   </head>
   <body class="flex flex-col min-h-full bg-bg text-text">
     {site.gtmId && (
-      <!-- Google Tag Manager (noscript) -->
       <noscript>
         <iframe
           src={`https://www.googletagmanager.com/ns.html?id=${site.gtmId}`}
@@ -97,7 +96,6 @@ const jsonLdWebsite = isHome ? JSON.stringify({
           style="display:none;visibility:hidden"
         ></iframe>
       </noscript>
-      <!-- End Google Tag Manager (noscript) -->
     )}
     <!-- Skip to main content -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
